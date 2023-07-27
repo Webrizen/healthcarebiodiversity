@@ -1,0 +1,169 @@
+.Navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    background: #fff;
+    border: 0.1px solid silver;
+}
+
+.logo {
+    width: 45px;
+    height: 45px;
+    overflow: hidden;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Sidebar CSS  */
+.Sidebar {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.Sidebar .searchbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    border: 0.1px solid silver;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.searchbar span {
+    width: 50px;
+    height: 100%;
+    border-radius: 5%;
+    background: linear-gradient(90deg, green, lightgreen);
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #fff;
+    align-items: center;
+    cursor: pointer;
+}
+
+.searchbar span:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.categories {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.categories h3 {
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.categories ul li {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background: -webkit-linear-gradient(green, lightgreen);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: 0.5s;
+}
+.categories ul li:hover{
+    border-left: 5px solid limegreen;
+}
+
+.categoryIcon {
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+/* Footer CSS  */
+.FooterSection{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    border-top: 0.1px solid silver;
+    background: #fff;
+    place-items: center;
+    padding: 20px;
+}
+.footCol{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+}
+.footCol ul{
+    list-style: none;
+    margin-left: -20px;
+}
+.footCol ul li{
+    padding: 10px 20px;
+    background: linear-gradient( 50deg, green, lightgreen);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: 0.5s;
+}
+.footCol ul li:hover{
+    border-left: 5px solid limegreen;
+}
+.Footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    background: #f1f1f1;
+    border: 0.1px solid rgba(0, 0, 0, 0.1);
+}
+
+@media only screen and (max-width: 768px) {
+    .FooterSection{
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }.footCol{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .footCol ul{
+        margin: 0;
+    }
+    .categories{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        white-space: nowrap;
+        width: 100%;
+        justify-content: center;
+    }
+    .categories ul{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        overflow-x: scroll;
+        white-space: nowrap;
+        width: 100%;
+    }
+    .Sidebar .categories ul li{
+        background: #f1f1f1;
+        color: #1f1f1f;
+        -webkit-background-clip: initial;
+        -webkit-text-fill-color: initial;
+        border-radius: 35px;
+    }
+  }
