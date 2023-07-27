@@ -17,7 +17,7 @@ export default function Sidebar() {
         <hr />
         <div className={styles.categories}>
           <ul>
-            <Link href="/">
+            <Link href="/admin">
               <li>
                 <RiHealthBookFill className={styles.categoryIcon} />
                 HealthCare

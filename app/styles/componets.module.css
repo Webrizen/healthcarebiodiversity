@@ -127,7 +127,52 @@
     background: #f1f1f1;
     border: 0.1px solid rgba(0, 0, 0, 0.1);
 }
-
+/* components.module.css */
+.Loading {
+    width: 100vw;
+    height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+  }
+.boxx{
+    width: min-content;
+    height: 200px;
+    margin: 300px auto;
+}
+ .Loading svg {
+    display:block;
+    width:258px;
+    height:258px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: 100px auto;
+  }
+  
+  .tree {
+    fill: green;
+  }
+  
+  .circlemask {
+    transform-origin: 50% 90%;
+    animation: scale 5s infinite ease-out;
+  }
+  
+  @keyframes scale {
+    0%, 100% {
+      transform: scale(0.0);
+    }
+    7%, 90% {
+      transform: scale(0.4);
+    }
+    50% {
+      transform: scale(1);
+    }
+  }
+  
 @media only screen and (max-width: 768px) {
     .FooterSection{
         grid-template-columns: 1fr;
