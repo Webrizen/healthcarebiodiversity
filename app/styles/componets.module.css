@@ -138,7 +138,6 @@
 .boxx{
     width: min-content;
     height: 200px;
-    margin: 300px auto;
 }
  .Loading svg {
     display:block;
@@ -149,7 +148,7 @@
     right: 0;
     top: 0;
     bottom: 0;
-    margin: 100px auto;
+    margin: 300px auto;
   }
   
   .tree {

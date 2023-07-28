@@ -1,10 +1,42 @@
-import React from "react";
+'use client';
+import React, { useState, useEffect } from "react";
 import styles from "@/app/styles/componets.module.css";
 import { IoMdSearch } from "react-icons/io";
 import { RiHealthBookFill } from "react-icons/ri";
 import Link from "next/link";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/firebase/config";
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
 
 export default function Sidebar() {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    // Fetch all categories from the "BlogPosts" collection
+    const fetchCategories = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "BlogPosts"));
+        const allCategories = new Set(); // Using a Set to ensure unique categories
+
+        // Loop through all documents and collect unique categories
+        querySnapshot.forEach((doc) => {
+          const category = doc.data().category;
+          if (category) {
+            allCategories.add(category);
+          }
+        });
+
+        setCategories(Array.from(allCategories));
+      } catch (error) {
+        console.error("Error fetching categories: ", error);
+        Swal.fire("Error", "An error occurred while fetching categories.", "error");
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
   return (
     <>
       <div className={styles.Sidebar}>
@@ -17,18 +49,14 @@ export default function Sidebar() {
         <hr />
         <div className={styles.categories}>
           <ul>
-            <Link href="/admin">
-              <li>
-                <RiHealthBookFill className={styles.categoryIcon} />
-                HealthCare
-              </li>
-            </Link>
-            <Link href="/">
-              <li>
-                <RiHealthBookFill className={styles.categoryIcon} />
-                Biodiversity
-              </li>
-            </Link>
+            {categories.map((category) => (
+              <Link href="/" key={category}>
+                <li>
+                  <RiHealthBookFill className={styles.categoryIcon} />
+                  {category}
+                </li>
+              </Link>
+            ))}
           </ul>
         </div>
       </div>
