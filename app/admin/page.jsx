@@ -7,8 +7,12 @@ import Link from "next/link";
 import signOutUser from "@/firebase/auth/logout";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/firebase/config";
 
 function Page() {
+  const [postCount, setPostCount] = useState(0);
+
   const handleLogout = async () => {
     const { success, error } = await signOutUser();
     if (success) {
@@ -60,6 +64,22 @@ function Page() {
     setSystemPerformance(performanceData);
   }, []);
 
+  // Function to fetch the post count from Firestore
+  const fetchPostCount = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "BlogPosts"));
+      const count = querySnapshot.size;
+      setPostCount(count);
+    } catch (error) {
+      console.error("Error fetching post count: ", error);
+    }
+  };
+
+  useEffect(() => {
+    if (user == null) router.push("/admin/login");
+    fetchPostCount(); // Fetch post count when the component mounts
+  }, [user]);
+
   return (
     <>
       <section className={styles.Admin}>
@@ -76,8 +96,12 @@ function Page() {
             </p>
           </div>
           <div className={styles.onboarding}>
-            <h1>0 Posts</h1>
-            <p>Seems Like You Don't Have Any Posts Yet!</p>
+            <h1>You Have {postCount} Posts Till Date.</h1>
+            {postCount === 0 ? (
+              <p>Seems Like You Don't Have Any Posts Yet!</p>
+            ) : (
+              <p>You have {postCount} posts. Keep up the good work!</p>
+            )}
           </div>
           <div className={styles.onboarding}>
             <h1>System Performance</h1>
