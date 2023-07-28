@@ -52,9 +52,8 @@ export default function Home() {
           return;
         }
 
-        // Get the latest 3 posts from the query result (excluding the latest post)
         const latestPostsData = querySnapshot.docs
-          .map((doc) => doc.data())
+          .map((doc) => ({ id: doc.id, ...doc.data() }))
           .filter((post) => post.id !== latestPost?.id) // Exclude the latest post
           .slice(0, 3); // Take only the first 3 posts
 
@@ -70,9 +69,6 @@ export default function Home() {
 
   return (
     <>
-      <section className={styles.AdsSection}>
-        <div className={styles.Ads}>Advertisment</div>
-      </section>
       <section className={styles.Home}>
         <div className={styles.HomeCard}>
           {latestPost ? (
@@ -100,16 +96,19 @@ export default function Home() {
           {/* Map this Card for 3 latest posts */}
           {latestPosts.length > 0 ? (
             latestPosts.map((post) => (
+              <>
               <div key={post.id} className={styles.card}>
                 <span>{post.category}</span>
                 <h2>{post.title}</h2>
                 <p>{post.author}</p>
               </div>
+              <hr />
+              </>
             ))
           ) : (
             <div>No Latest Posts Found</div>
           )}
-          <hr />
+          
         </div>
       </section>
     </>
