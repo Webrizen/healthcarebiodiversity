@@ -16,5 +16,8 @@
     "react-icons": "^4.10.1",
     "react-quill": "^2.0.0",
     "sweetalert2": "^11.7.20"
+  },
+  "devDependencies": {
+    "encoding": "^0.1.13"
   }
 }
