@@ -5,7 +5,7 @@ import signIn from "@/firebase/auth/signin";
 import { useRouter } from 'next/navigation';
 import styles from '@/app/styles/admin.module.css';
 
-function Page() {
+function page() {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const router = useRouter();
