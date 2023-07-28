@@ -1,12 +1,16 @@
 "use client";
 import React, { useState } from "react";
-import ReactQuill from "react-quill";
+import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css"; // Import the styles for the editor
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db } from "@/firebase/config";
 import Swal from 'sweetalert2';
 import styles from "@/app/styles/admin.module.css";
+
+const ReactQuill = dynamic(() => import("react-quill"), {
+  ssr: false,
+});
 
 export default function page() {
   const [title, setTitle] = useState("");

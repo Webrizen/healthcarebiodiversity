@@ -8,11 +8,14 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import Swal from "sweetalert2";
-import { db, storage } from "@/firebase/config";
+import { db } from "@/firebase/config";
 import styles from "@/app/styles/admin.module.css";
-import ReactQuill from "react-quill";
+import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
+const ReactQuill = dynamic(() => import("react-quill"), {
+  ssr: false,
+});
 
 export default function page() {
   const [posts, setPosts] = useState([]);
@@ -90,7 +93,7 @@ export default function page() {
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     setEditedImage(selectedFile);
-  
+
     // Generate a preview of the selected image
     const reader = new FileReader();
     reader.onloadend = () => {
@@ -98,7 +101,6 @@ export default function page() {
     };
     reader.readAsDataURL(selectedFile);
   };
-  
 
   const handleEditModalClose = () => {
     setIsEditModalOpen(false);
@@ -114,27 +116,15 @@ export default function page() {
           Swal.showLoading();
         },
       });
-  
-      let downloadURL = ""; // Define the downloadURL variable here
-  
-      // Upload the new image to Firebase storage
-      if (editedImage) {
-        const storageRef = ref(storage, `images/${editedImage.name}`);
-        await uploadBytes(storageRef, editedImage);
-        // Get the download URL of the uploaded image
-        downloadURL = await getDownloadURL(storageRef); // Update the downloadURL inside the if block
-      }
-  
-      // Update the Firestore document with the new image URL if available
+
       await updateDoc(doc(db, "BlogPosts", selectedPost.id), {
         title: editedTitle,
         shortDescription: editedShortDescription,
         author: editedAuthor,
         category: editedCategory,
         content: editedContent,
-        image: editedImage ? downloadURL : selectedPost.image, // Use the new image URL if available, otherwise use the existing one
       });
-  
+
       // Update the local state with the edited post data
       setPosts((prevPosts) =>
         prevPosts.map((post) =>
@@ -146,14 +136,13 @@ export default function page() {
                 author: editedAuthor,
                 category: editedCategory,
                 content: editedContent,
-                image: editedImage ? downloadURL : post.image, // Use the new image URL if available, otherwise use the existing one
               }
             : post
         )
       );
-  
+
       setIsEditModalOpen(false);
-  
+
       // Show a success message using SweetAlert2 after updating data
       Swal.fire({
         icon: "success",
