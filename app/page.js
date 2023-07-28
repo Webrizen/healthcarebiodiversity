@@ -67,6 +67,7 @@ export default function Home() {
     fetchLatestPosts();
   }, [latestPost?.id]); // Use latestPost?.id as a dependency to re-fetch the latest 3 posts whenever the latestPost changes
 
+  
   return (
     <>
       <section className={styles.Home}>
@@ -110,6 +111,30 @@ export default function Home() {
           )}
           
         </div>
+      </section>
+      <section className={styles.HomeNext}>
+        <h1>The Latest</h1>
+        <hr />
+        {latestPosts.map((post) => (
+          <div key={post.id} className={styles.ThreeColCard}>
+            <div className={styles.Left}>
+              <span>{post.category}</span>
+              <h2>{post.title}</h2>
+              <p>{post.author}</p>
+              <p style={{ fontSize: '12px', color: 'rgba(0,0,0,0.6)' }}>{new Date(post.date.seconds * 1000).toLocaleString()}</p>
+            </div>
+            <div className={styles.mid}>
+              <p dangerouslySetInnerHTML={{ __html: post.shortDescription }} />
+            </div>
+            <div className={styles.Right}>
+              {post.image ? (
+                <Image src={post.image} alt="POST IMAGE" loading="lazy" width={100} height={100} />
+              ) : (
+                <div>No Image</div>
+              )}
+            </div>
+          </div>
+        ))}
       </section>
     </>
   );

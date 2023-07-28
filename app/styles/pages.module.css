@@ -68,3 +68,53 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+.HomeNext{
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 10px;
+    justify-content: left;
+}
+.HomeNext hr{
+    width: 70%;
+}
+.ThreeColCard{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    transition: 0.5s;
+}
+.ThreeColCard:hover{
+    background: #fff;
+}
+.ThreeColCard .Left{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.ThreeColCard .Left span{
+    background: linear-gradient(120deg, rgb(28, 196, 28), rgb(2, 90, 2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.ThreeColCard .Left h2{
+    font-size: 2rem;
+}
+.ThreeColCard .Right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.ThreeColCard .Right img{
+    width: 90%;
+    height: 90%;
+    border-radius: 10px;
+}
