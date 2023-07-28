@@ -1,0 +1,64 @@
+.AdsSection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.AdsSection .Ads{
+    width: 90%;
+    height: 150px;
+    border-radius: 10px;
+    border: 0.1px solid silver;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.Home{
+    display: grid;
+    grid-template-columns: 60% 1fr;
+    gap: 10px;
+    padding: 10px;
+}
+.HomeCard{
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 10px;
+    justify-content: left;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.HomeCard:hover{
+    background: #fff;
+}
+.VerticalPosts{
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.HomeCard h1{
+    font-size: 2.5rem;
+}
+.HomeCard img{
+    border-radius: 10px;
+}
+.VerticalPosts .card{
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 10px;
+    justify-content: left;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.VerticalPosts .card:hover{
+    background: #fff;
+}
