@@ -89,6 +89,12 @@
   .threeCol {
     grid-template-columns: 1fr;
   }
+  .wrapper{
+    height: auto;
+  }
+  .wrapper form{
+    width: 100%;
+  }
 }
 
 
