@@ -141,7 +141,6 @@ export default function BlogPostPage({ params }) {
     fetchOtherBlogs();
   }, [id]);
 
-
   // If the blog post is not available yet, you can show a loading state or a message
   if (!blogData || !otherBlogs.length) {
     return <div>Loading...</div>;
@@ -165,9 +164,10 @@ export default function BlogPostPage({ params }) {
             <Image
               src={blogData.image}
               alt="Blog Post Image"
-              width={0}
-              height={0}
+              width={400}
+              height={300}
               className={styles.Image}
+              priority={true}
             />
           ) : (
             <div>No Image</div>
@@ -183,9 +183,10 @@ export default function BlogPostPage({ params }) {
                     <Image
                       src={blog.image}
                       alt="Blog Post Image"
-                      width={0}
-                      height={0}
+                      width={400}
+                      height={300}
                       className={styles.NextImage}
+                      priority={true}
                     />
                   ) : (
                     <div>No Image</div>
@@ -199,10 +200,8 @@ export default function BlogPostPage({ params }) {
         <div className={styles.options}>
           <div className={styles.threeicons}>
             <Link href="/">
-              <div
-                className={styles.icoSpecail}
-              >
-                <IoMdClose style={{ position: 'absolute' }} />
+              <div className={styles.icoSpecail}>
+                <IoMdClose style={{ position: "absolute" }} />
               </div>
             </Link>
             <div className={styles.ico} onClick={handleTwitterShare}>
