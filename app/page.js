@@ -6,9 +6,10 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '@/firebase/config';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import Link from 'next/link';
 
 export default function Home() {
-  const [latestPost, setLatestPost] = useState(null);
+  const [latestPost, setLatestPost] = useState({ id: null, data: null });
   const [latestPosts, setLatestPosts] = useState([]);
 
   useEffect(() => {
@@ -22,14 +23,15 @@ export default function Home() {
 
         // If there are no documents, handle the case
         if (querySnapshot.empty) {
-          setLatestPost(null);
+          setLatestPost({ id: null, data: null });
           Swal.fire('No Latest Post', 'No posts found in the database.', 'info');
           return;
         }
 
         // Get the latest post from the query result
         const latestPostData = querySnapshot.docs[0].data();
-        setLatestPost(latestPostData);
+        const latestPostId = querySnapshot.docs[0].id;
+        setLatestPost({ id: latestPostId, data: latestPostData });
       } catch (error) {
         console.error('Error fetching latest post: ', error);
         Swal.fire('Error', 'An error occurred while fetching the latest post.', 'error');
@@ -37,6 +39,7 @@ export default function Home() {
     };
 
     fetchLatestPost();
+
 
     // Fetch the latest 3 posts from the "BlogPosts" collection
     const fetchLatestPosts = async () => {
@@ -67,73 +70,81 @@ export default function Home() {
     fetchLatestPosts();
   }, [latestPost?.id]); // Use latestPost?.id as a dependency to re-fetch the latest 3 posts whenever the latestPost changes
 
-  
+  console.log(latestPost)
+
+
   return (
     <>
       <section className={styles.Home}>
-        <div className={styles.HomeCard}>
-          {latestPost ? (
-            <>
-              <h1>{latestPost.title}</h1>
-              <span>{latestPost.author}</span>
-              {latestPost.image ? (
-                <Image
-                  src={latestPost.image}
-                  alt="POST IMAGE"
-                  loading="lazy"
-                  width={400}
-                  height={400}
-                  style={{ width: 'auto', height: '400px' }}
-                />
-              ) : (
-                <div>No Image</div>
-              )}
-            </>
-          ) : (
-            <div>No Latest Post Found</div>
-          )}
-        </div>
+      {latestPost.data ? (
+          <Link href={`/blogs/${latestPost.id}`} style={{ whiteSpace: 'normal' }}>
+            <div className={styles.HomeCard}>
+              <>
+                <h1>{latestPost.data.title}</h1>
+                <span>{latestPost.data.author}</span>
+                {latestPost.data.image ? (
+                  <Image
+                    src={latestPost.data.image}
+                    alt="POST IMAGE"
+                    loading="lazy"
+                    width={400}
+                    height={400}
+                    style={{ width: 'auto', height: '400px' }}
+                  />
+                ) : (
+                  <div>No Image</div>
+                )}
+              </>
+            </div>
+          </Link>
+        ) : (
+          <div>No Latest Post Found</div>
+        )}
         <div className={styles.VerticalPosts}>
-          {/* Map this Card for 3 latest posts */}
           {latestPosts.length > 0 ? (
             latestPosts.map((post) => (
               <>
-              <div key={post.id} className={styles.card}>
-                <span>{post.category}</span>
-                <h2>{post.title}</h2>
-                <p>{post.author}</p>
-              </div>
-              <hr />
+                <Link key={post.id} href={`/blogs/${post.id}`} style={{ whiteSpace: 'normal' }}>
+                  <div className={styles.card}>
+                    <span>{post.category}</span>
+                    <h2>{post.title}</h2>
+                    <p>{post.author}</p>
+                  </div>
+                </Link>
+                <hr />
               </>
             ))
           ) : (
             <div>No Latest Posts Found</div>
           )}
-          
+
+
         </div>
       </section>
       <section className={styles.HomeNext}>
         <h1>The Latest</h1>
         <hr />
         {latestPosts.map((post) => (
-          <div key={post.id} className={styles.ThreeColCard}>
-            <div className={styles.Left}>
-              <span>{post.category}</span>
-              <h2>{post.title}</h2>
-              <p>{post.author}</p>
-              <p style={{ fontSize: '12px', color: 'rgba(0,0,0,0.6)' }}>{new Date(post.date.seconds * 1000).toLocaleString()}</p>
+          <Link key={post.id} href={`/blogs/${post.id}`} style={{ whiteSpace: 'normal' }}>
+            <div className={styles.ThreeColCard}>
+              <div className={styles.Left}>
+                <span>{post.category}</span>
+                <h2>{post.title}</h2>
+                <p>{post.author}</p>
+                <p style={{ fontSize: '12px', color: 'rgba(0,0,0,0.6)' }}>{new Date(post.date.seconds * 1000).toLocaleString()}</p>
+              </div>
+              <div className={styles.mid}>
+                <p dangerouslySetInnerHTML={{ __html: post.shortDescription }} />
+              </div>
+              <div className={styles.Right}>
+                {post.image ? (
+                  <Image src={post.image} alt="POST IMAGE" loading="lazy" width={100} height={100} />
+                ) : (
+                  <div>No Image</div>
+                )}
+              </div>
             </div>
-            <div className={styles.mid}>
-              <p dangerouslySetInnerHTML={{ __html: post.shortDescription }} />
-            </div>
-            <div className={styles.Right}>
-              {post.image ? (
-                <Image src={post.image} alt="POST IMAGE" loading="lazy" width={100} height={100} />
-              ) : (
-                <div>No Image</div>
-              )}
-            </div>
-          </div>
+          </Link>
         ))}
       </section>
     </>

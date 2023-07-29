@@ -78,7 +78,7 @@
   gap: 10px;
 }
 
-.AddBlog input {
+.AddBlog input, .AddBlog textarea {
   background: #fff;
   padding: 10px 20px;
   border: 0.1px solid silver;

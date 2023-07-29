@@ -12,7 +12,6 @@ const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
 });
 
-
 export default function New() {
     const [title, setTitle] = useState("");
     const [shortDescription, setShortDescription] = useState("");
@@ -85,8 +84,6 @@ export default function New() {
         Swal.fire('Error', 'An error occurred while adding the blog post.', 'error');
       }
     };
-    
-  
   
     return (
       <>
@@ -103,9 +100,9 @@ export default function New() {
             </div>
             <div>
               <label>Short Description:</label>
-              <ReactQuill
+              <textarea
                 value={shortDescription}
-                onChange={setShortDescription}
+                onChange={(e) => setShortDescription(e.target.value)}
                 style={{ height: '200px', borderRadius: '4px' }}
               />
             </div>
@@ -138,4 +135,4 @@ export default function New() {
         </section>
       </>
     );
-  }
+}

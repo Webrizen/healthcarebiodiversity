@@ -1,10 +1,11 @@
-.AdsSection{
+.AdsSection {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px;
 }
-.AdsSection .Ads{
+
+.AdsSection .Ads {
     width: 90%;
     height: 150px;
     border-radius: 10px;
@@ -15,13 +16,15 @@
     align-items: center;
     text-align: center;
 }
-.Home{
+
+.Home {
     display: grid;
     grid-template-columns: 60% 1fr;
     gap: 10px;
     padding: 10px;
 }
-.HomeCard{
+
+.HomeCard {
     width: 100%;
     padding: 10px;
     display: flex;
@@ -32,23 +35,28 @@
     cursor: pointer;
     transition: 0.5s;
 }
-.HomeCard:hover{
+
+.HomeCard:hover {
     background: #fff;
 }
-.VerticalPosts{
+
+.VerticalPosts {
     width: 100%;
     padding: 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-.HomeCard h1{
+
+.HomeCard h1 {
     font-size: 2.5rem;
 }
-.HomeCard img{
+
+.HomeCard img {
     border-radius: 10px;
 }
-.VerticalPosts .card{
+
+.VerticalPosts .card {
     width: 100%;
     padding: 10px;
     display: flex;
@@ -59,16 +67,19 @@
     cursor: pointer;
     transition: 0.5s;
 }
-.VerticalPosts .card:hover{
+
+.VerticalPosts .card:hover {
     background: #fff;
 }
-.VerticalPosts .card span{
+
+.VerticalPosts .card span {
     background: linear-gradient(120deg, rgb(28, 196, 28), rgb(2, 90, 2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
-.HomeNext{
+
+.HomeNext {
     width: 100%;
     padding: 10px;
     display: flex;
@@ -76,11 +87,14 @@
     gap: 10px;
     border-radius: 10px;
     justify-content: left;
+    cursor: pointer;
 }
-.HomeNext hr{
+
+.HomeNext hr {
     width: 70%;
 }
-.ThreeColCard{
+
+.ThreeColCard {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -89,52 +103,252 @@
     padding: 10px;
     transition: 0.5s;
 }
-.ThreeColCard:hover{
+
+.ThreeColCard:hover {
     background: #fff;
 }
-.ThreeColCard .Left{
+
+.ThreeColCard .Left {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-.ThreeColCard .Left span{
+
+.ThreeColCard .Left span {
     background: linear-gradient(120deg, rgb(28, 196, 28), rgb(2, 90, 2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
-.ThreeColCard .Left h2{
+
+.ThreeColCard .Left h2 {
     font-size: 2rem;
 }
-.ThreeColCard .Right{
+
+.ThreeColCard .Right {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
 }
-.ThreeColCard .Right img{
+
+.ThreeColCard .Right img {
     width: 90%;
     height: 90%;
     border-radius: 10px;
 }
 
 @media only screen and (max-width: 768px) {
-    .Home{
+    .Home {
         grid-template-columns: 1fr;
         overflow: hidden;
         padding: 0px;
     }
-    .ThreeColCard{
+
+    .ThreeColCard {
         grid-template-columns: 1fr;
         overflow: hidden;
     }
-    .HomeCard img{
+
+    .HomeCard img {
         width: 100% !important;
         height: auto;
     }
-    .Right img{
+
+    .Right img {
         width: 100% !important;
         height: auto;
+    }
+}
+
+.twomainCol {
+    display: grid;
+    grid-template-columns: 1fr 20%;
+    gap: 10px;
+    width: 100%;
+}
+
+.mainContent,
+.options {
+    width: 100%;
+    height: 100%;
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mainContent img {
+    border-radius: 10px;
+}
+
+.mainContent .cato {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(120deg, rgb(28, 196, 28), rgb(2, 90, 2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    width: min-content;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.cato:hover {
+    color: rgba(0, 0, 0, 0.7);
+    background: none;
+    background-clip: initial;
+    -webkit-text-fill-color: rgba(0, 0, 0, 0.7);
+}
+
+.mainContent h1 {
+    font-size: 2.8rem;
+}
+
+.twocol {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+}
+
+.threeCol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.SingleCard {
+    display: flex;
+    flex-direction: column;
+    white-space: normal;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.SingleCard:hover {
+    background: #fff;
+}
+
+.SingleCard img {
+    border-radius: 10px;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.threeicons {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    width: min-content;
+    position: sticky;
+    top: 8%;
+}
+
+.ico {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(120deg, rgb(28, 196, 28), rgb(2, 90, 2));
+    border-radius: 50%;
+    color: #fff;
+    transition: 0.5s;
+    cursor: pointer;
+    font-size: 1.3rem;
+}
+
+.icoSpecail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    background: #fff;
+    border-radius: 50%;
+    color: rgb(28, 196, 28);
+    transition: 0.5s;
+    cursor: pointer;
+    font-size: 1.3rem;
+    position: relative;
+}
+
+.ico:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.Something {
+    display: "flex";
+    flex-direction: "row";
+    align-items: "center";
+    gap: "5px";
+    width: "min-content";
+    white-space: "nowrap";
+}
+.Image{
+    width: 100%;
+    height: auto;
+}
+.NextImage{
+    width: 100%;
+    height: 300px;
+}
+@media only screen and (max-width: 768px) {
+
+    .twomainCol,
+    .ThreeColCard,
+    .twocol,
+    .threeCol {
+        grid-template-columns: 1fr;
+    }
+
+    .mainContent img {
+        width: 90vw;
+    }
+
+    .threeicons {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .threeCol{
+        width: 90vw;
+    }
+    .mainContent{
+        width: 95vw;
+    }
+
+    .SingleCard {
+        justify-content: space-between;
+        white-space: pre-wrap;
+    }
+
+    .Image, .NextImage {
+        width: 90vw;
+    }
+
+    .Something {
+        white-space: normal;
     }
 }
