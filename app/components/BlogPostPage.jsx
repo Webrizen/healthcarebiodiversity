@@ -156,9 +156,7 @@ export default function BlogPostPage({ params }) {
               {blogData.author} <BsDot />{" "}
               {new Date(blogData.date.seconds * 1000).toLocaleString()}
             </span>
-            <span className={styles.cato}>
-              <MdComment /> Comment
-            </span>
+            <span className={styles.cato}></span>
           </div>
           {blogData.image ? (
             <Image

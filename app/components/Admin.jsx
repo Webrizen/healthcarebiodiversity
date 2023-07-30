@@ -44,26 +44,6 @@ export default function Admin() {
 
   const Time = new Date().toTimeString();
 
-  // Step 1: Function to get system performance data
-  const getSystemPerformanceData = () => {
-    const memoryInfo = window.performance.memory;
-    const memoryUsed = memoryInfo.usedJSHeapSize / (1024 * 1024); // Convert to MB
-
-    const navigationInfo = window.performance.getEntriesByType("navigation")[0];
-    const pageLoadTime =
-      navigationInfo.loadEventEnd - navigationInfo.navigationStart;
-
-    return { memoryUsed, pageLoadTime };
-  };
-
-  // Step 2: Display system performance data in the last card
-  const [systemPerformance, setSystemPerformance] = useState(null);
-
-  useEffect(() => {
-    const performanceData = getSystemPerformanceData();
-    setSystemPerformance(performanceData);
-  }, []);
-
   // Function to fetch the post count from Firestore
   const fetchPostCount = async () => {
     try {
@@ -104,13 +84,11 @@ export default function Admin() {
             )}
           </div>
           <div className={styles.onboarding}>
-            <h1>System Performance</h1>
-            {systemPerformance && (
-              <>
-                <p>Memory Used: {systemPerformance.memoryUsed.toFixed(2)} MB</p>
-                <p>Page Load Time: {systemPerformance.pageLoadTime} m/s</p>
-              </>
-            )}
+            <h1>Manage Contacts</h1>
+            <p>Manage all contact requests from here, contact them or remove them from database!</p>
+            <Link href="/admin/contact">
+            <button>Manage</button>
+            </Link>
           </div>
           <div className={styles.onboarding}>
             <h1>All Posts!</h1>
