@@ -4,6 +4,8 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '@/firebase/config';
 import Link from 'next/link';
 import styles from '@/app/styles/pages.module.css';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 export default function page({ params }) {
   const [posts, setPosts] = useState([]);
@@ -23,9 +25,15 @@ export default function page({ params }) {
         setPosts(postsData);
       } catch (error) {
         console.error('Error fetching posts: ', error);
-        // Handle the error, e.g., show a message to the user
+        // Show an error message using SweetAlert2
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'An error occurred while fetching posts. Please try again.',
+        });
       }
     };
+    
 
     fetchPosts();
   }, [encodedCategory]);
@@ -37,20 +45,23 @@ export default function page({ params }) {
         <ul>
           {posts.map((post) => (
             <li key={post.id}>
-              <Link href={`/blogs/${post.id}`} style={{ whiteSpace: 'normal' }} >
-              <div className={styles.cardMox}>
-                    <span>{post.category}</span>
-                    <h2>{post.title}</h2>
-                    <p>{post.shortDescription}</p>
-                    <p>{post.author}</p>
-                  </div>
+              <Link href={`/blogs/${post.id}`} style={{ whiteSpace: 'normal' }}>
+                <div className={styles.cardMox}>
+                  <span>{post.category}</span>
+                  <h2>{post.title}</h2>
+                  <p>{post.shortDescription}</p>
+                  <p>{post.author}</p>
+                </div>
               </Link>
             </li>
           ))}
         </ul>
       ) : (
-        <p>No posts found with this category.</p>
+        <>
+          <p>No posts found with this category.</p>
+        </>
       )}
     </div>
   );
+  
 }
