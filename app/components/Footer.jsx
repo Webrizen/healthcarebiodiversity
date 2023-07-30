@@ -7,6 +7,7 @@ export default function Footer() {
   return (
     <>
       <section className={styles.FooterSection}>
+        <div className={styles.footLeft}>
         <div className={styles.footCol}>
           <h4>About</h4>
           <ul>
@@ -73,6 +74,8 @@ export default function Footer() {
             </li>
           </ul>
         </div>
+        </div>
+        <div className={styles.footRight}>
         <div className={styles.footCol}>
           <h4>Follow Us</h4>
           <ul>
@@ -113,6 +116,7 @@ export default function Footer() {
             </li>
           </ul>
           </div>
+        </div>
       </section>
       <footer className={styles.Footer}>
         © {Year} HealthCare Biodiversity | All Rights Reserved.
