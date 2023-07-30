@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "@/app/styles/componets.module.css";
 import { IoMdSearch } from "react-icons/io";
-import { RiHealthBookFill } from "react-icons/ri";
 import Link from "next/link";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/firebase/config";
@@ -37,6 +36,12 @@ export default function Sidebar() {
     fetchCategories();
   }, []);
 
+  const formatCategory = (category) => {
+    // Replace spaces with "-"
+    // Replace "&" with "and"
+    return category.replace(/\s+/g, "-").replace(/&/g, "and");
+  };
+
   return (
     <>
       <div className={styles.Sidebar}>
@@ -50,10 +55,8 @@ export default function Sidebar() {
         <div className={styles.categories}>
           <ul>
             {categories.map((category) => (
-              <Link href="/" key={category}>
-                <li>
-                  {category}
-                </li>
+              <Link href={`/categories/${formatCategory(category)}`} key={category}>
+                <li>{category}</li>
               </Link>
             ))}
           </ul>
