@@ -316,7 +316,177 @@
     width: 100%;
     height: 300px;
 }
-@media only screen and (max-width: 768px) {
+
+/* pages.module.css */
+.section {
+    padding: 40px;
+  }
+  
+  /* Styling for the About Us section */
+  .aboutContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .logoContainer {
+    text-align: center;
+  }
+  
+  .logo {
+    width: auto;
+    height: 200px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    transform: scale(2.5);
+  }
+  .logoStaff{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .heading {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .description {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+  
+  .mission {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .missionList {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+  
+  .missionList li {
+    font-size: 16px;
+    line-height: 1.4;
+    margin-bottom: 5px;
+  }
+  .staffGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-items: center;
+  }
+  
+  .staffCard {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.5s;
+  }
+  
+  .staffCard:hover {
+    background: linear-gradient(120deg, rgb(28, 196, 28), rgb(2, 90, 2));
+    color: #fff;
+  }
+  
+  .staffImage {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+
+  .twoColContact{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .container {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+  }
+  
+  
+  /* Content Styles */
+  .logoContainer {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .logoContainer img {
+    width: auto;
+    height: 200px;
+  }
+  
+  .contentContainer {
+    text-align: center;
+  }
+  
+  .contentContainer h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  
+  .contentContainer p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #555555;
+  }
+  
+  /* Form Styles */
+  
+  .contactForm {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 10px;
+  }
+
+  .formGroup label {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .formGroup input,
+  .formGroup textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .formGroup textarea {
+    resize: vertical;
+  }
+.mainContactContent{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.mainContactContent div{
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+}
+  @media only screen and (max-width: 768px) {
 
     .twomainCol,
     .ThreeColCard,
@@ -354,5 +524,15 @@
 
     .Something {
         white-space: normal;
+    }
+    .section{
+        padding: 10px;
+    }
+    .container{
+        width: 100%;
+        padding: 10px;
+    }
+    .twoColContact{
+        grid-template-columns: 1fr;
     }
 }

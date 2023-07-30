@@ -133,10 +133,6 @@ body::-webkit-scrollbar-thumb {
   .main-layout {
     grid-template-columns: 1fr;
   }
-  .main-content{
-    height: 100vh;
-    overflow-y: scroll;
-  }
   .sidebar {
     display: flex;
     flex-direction: row;
