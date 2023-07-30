@@ -78,7 +78,7 @@
   gap: 10px;
 }
 
-.AddBlog input, .AddBlog textarea {
+.AddBlog input, .AddBlog textarea, .AddBlog select{
   background: #fff;
   padding: 10px 20px;
   border: 0.1px solid silver;
@@ -198,7 +198,7 @@
   background: #f1f1f1;
 }
 
-.modalContent input, .modalContent textarea{
+.modalContent input, .modalContent textarea, .modalContent select{
   padding: 10px 20px;
   background: #fff;
   border-radius: 4px;
@@ -220,4 +220,56 @@
   .modalContent{
     width: 95%;
   }
+}
+
+.CategoryTable {
+  margin-top: 30px;
+}
+
+.CategoryTable h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.CategoryTable table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.CategoryTable th,
+.CategoryTable td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.CategoryTable th {
+  background-color: #f0f0f0;
+}
+
+.CategoryTable button {
+  padding: 8px 16px;
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.CategoryTable button:hover {
+  background-color: #d32f2f;
+}
+
+.CategoryTable button:focus {
+  outline: none;
+}
+
+.CategoryTable button:active {
+  background-color: #c62828;
+}
+
+/* Optional: Add some spacing between the rows */
+.CategoryTable tbody tr:not(:last-child) {
+  margin-bottom: 10px;
 }

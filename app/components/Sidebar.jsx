@@ -52,7 +52,6 @@ export default function Sidebar() {
             {categories.map((category) => (
               <Link href="/" key={category}>
                 <li>
-                  <RiHealthBookFill className={styles.categoryIcon} />
                   {category}
                 </li>
               </Link>

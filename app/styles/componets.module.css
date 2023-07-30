@@ -72,13 +72,14 @@
     display: flex;
     align-items: center;
     padding: 10px 20px;
-    background: -webkit-linear-gradient(green, lightgreen);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     transition: 0.5s;
 }
 .categories ul li:hover{
     border-left: 5px solid limegreen;
+    background: -webkit-linear-gradient(green, lightgreen);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .categoryIcon {

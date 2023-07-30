@@ -14,7 +14,7 @@ export default function Navbar() {
       </div>
       </Link>
       <div className={styles.leftHeader}>
-        <button>Newsletters</button>
+        <Link href="/admin"><button>Newsletters</button></Link>
       </div>
       </header> 
     </>

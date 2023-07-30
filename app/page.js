@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '@/app/styles/pages.module.css';
 import Image from 'next/image';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, onSnapshot  } from 'firebase/firestore';
 import { db } from '@/firebase/config';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
@@ -38,10 +38,7 @@ export default function Home() {
       }
     };
 
-    fetchLatestPost();
-
-
-    // Fetch the latest 3 posts from the "BlogPosts" collection
+    // Fetch all posts except the latest one from the "BlogPosts" collection
     const fetchLatestPosts = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, 'BlogPosts'), {
@@ -57,8 +54,7 @@ export default function Home() {
 
         const latestPostsData = querySnapshot.docs
           .map((doc) => ({ id: doc.id, ...doc.data() }))
-          .filter((post) => post.id !== latestPost?.id) // Exclude the latest post
-          .slice(0, 3); // Take only the first 3 posts
+          .filter((post) => post.id !== latestPost?.id); // Exclude the latest post
 
         setLatestPosts(latestPostsData);
       } catch (error) {
@@ -67,16 +63,26 @@ export default function Home() {
       }
     };
 
-    fetchLatestPosts();
-  }, [latestPost?.id]); // Use latestPost?.id as a dependency to re-fetch the latest 3 posts whenever the latestPost changes
+    const unsubscribeLatestPost = onSnapshot(collection(db, 'BlogPosts'), (snapshot) => {
+      fetchLatestPost();
+    });
 
-  console.log(latestPost)
+    const unsubscribeLatestPosts = onSnapshot(collection(db, 'BlogPosts'), (snapshot) => {
+      fetchLatestPosts();
+    });
 
+    return () => {
+      // Unsubscribe from the snapshots when the component is unmounted
+      unsubscribeLatestPost();
+      unsubscribeLatestPosts();
+    };
+  }, [latestPost?.id]);
 
   return (
     <>
       <section className={styles.Home}>
-      {latestPost.data ? (
+        {/* Show Only 1 Latest POST here  */}
+        {latestPost.data ? (
           <Link href={`/blogs/${latestPost.id}`} style={{ whiteSpace: 'normal' }}>
             <div className={styles.HomeCard}>
               <>
@@ -101,8 +107,9 @@ export default function Home() {
           <div>No Latest Post Found</div>
         )}
         <div className={styles.VerticalPosts}>
+          {/* Show Only 3 POSTS excluding The Post You showed Above  */}
           {latestPosts.length > 0 ? (
-            latestPosts.map((post) => (
+            latestPosts.slice(0, 3).map((post) => (
               <>
                 <Link key={post.id} href={`/blogs/${post.id}`} style={{ whiteSpace: 'normal' }}>
                   <div className={styles.card}>
@@ -117,13 +124,12 @@ export default function Home() {
           ) : (
             <div>No Latest Posts Found</div>
           )}
-
-
         </div>
       </section>
       <section className={styles.HomeNext}>
         <h1>The Latest</h1>
         <hr />
+        {/* Show All Post Below  */}
         {latestPosts.map((post) => (
           <Link key={post.id} href={`/blogs/${post.id}`} style={{ whiteSpace: 'normal' }}>
             <div className={styles.ThreeColCard}>
