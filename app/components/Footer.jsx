@@ -6,6 +6,7 @@ import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import { db } from "@/firebase/config";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
+import { BsFacebook, BsInstagram, BsLinkedin, BsTwitter, BsYoutube } from "react-icons/bs";
 
 export default function Footer() {
   const Year = new Date().getFullYear();
@@ -165,19 +166,19 @@ export default function Footer() {
             <h4>Follow Us</h4>
             <ul>
               <li>
-                <Link href="/">Instagram</Link>
+                <Link href="/"><BsInstagram/> {"  "} Instagram</Link>
               </li>
               <li>
-                <Link href="/">Facebook</Link>
+                <Link href="/"><BsFacebook/>{"  "} Facebook</Link>
               </li>
               <li>
-                <Link href="/">Twitter</Link>
+                <Link href="/"><BsTwitter/>{"  "} Twitter</Link>
               </li>
               <li>
-                <Link href="/">YouTube</Link>
+                <Link href="/"><BsYoutube/>{"  "} YouTube</Link>
               </li>
               <li>
-                <Link href="/">Linkdin</Link>
+                <Link href="/"><BsLinkedin/>{"  "} Linkedin</Link>
               </li>
             </ul>
           </div>

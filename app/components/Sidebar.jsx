@@ -86,6 +86,7 @@ export default function Sidebar() {
   return (
     <>
       <div className={styles.Sidebar}>
+        <div className={styles.sideTop}>
         <div className={styles.searchbar}>
         <input
             type="search"
@@ -121,6 +122,7 @@ export default function Sidebar() {
               </Link>
             ))}
           </ul>
+        </div>
         </div>
       </div>
     </>

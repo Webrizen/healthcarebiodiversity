@@ -37,7 +37,7 @@
 }
 
 .HomeCard:hover {
-    background: #fff;
+    opacity: 0.6;
 }
 
 .VerticalPosts {
@@ -69,7 +69,7 @@
 }
 
 .VerticalPosts .card:hover {
-    background: #fff;
+    opacity: 0.6;
 }
 
 .VerticalPosts .card span {
@@ -105,7 +105,7 @@
 }
 
 .ThreeColCard:hover {
-    background: #fff;
+    opacity: 0.6;
 }
 
 .ThreeColCard .Left {
@@ -142,6 +142,9 @@
     background: #fff;
     border-radius: 10px;
     padding: 20px;
+}
+.cardMox:hover{
+    background: #f1f1f1;
 }
 @media only screen and (max-width: 768px) {
     .Home {
@@ -242,7 +245,7 @@
 }
 
 .SingleCard:hover {
-    background: #fff;
+    opacity: 0.6;
 }
 
 .SingleCard img {
@@ -262,7 +265,8 @@
     gap: 10px;
     width: min-content;
     position: sticky;
-    top: 8%;
+    position: -webkit-sticky;
+    top: 0;
 }
 
 .ico {
@@ -298,6 +302,9 @@
 
 .ico:hover {
     background: rgba(0, 0, 0, 0.3);
+}
+.icoSpecail:hover{
+    background: #f1f1f1;
 }
 
 .Something {
@@ -398,7 +405,7 @@
   
   .staffCard:hover {
     background: linear-gradient(120deg, rgb(28, 196, 28), rgb(2, 90, 2));
-    color: #fff;
+    color: #f1f1f1;
   }
   
   .staffImage {
@@ -500,11 +507,9 @@
     }
 
     .threeicons {
-        display: flex;
-        flex-direction: row;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         gap: 10px;
-        justify-content: space-between;
-        align-items: center;
     }
     .threeCol{
         width: 90vw;
@@ -534,5 +539,8 @@
     }
     .twoColContact{
         grid-template-columns: 1fr;
+    }
+    .logo{
+        transform: scale(1);
     }
 }

@@ -17,6 +17,8 @@ const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
 });
 
+const itemsPerPage = 10;
+
 export default function Posts() {
   const [posts, setPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
@@ -29,6 +31,7 @@ export default function Posts() {
   const [editedImage, setEditedImage] = useState("");
   const [previewImage, setPreviewImage] = useState("");
   const [categories, setCategories] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     // Fetch all posts from the "BlogPosts" collection
@@ -113,6 +116,7 @@ export default function Posts() {
     setEditedContent(post.content);
     setEditedImage(post.image);
     setPreviewImage(post.image);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleFileChange = (e) => {
@@ -182,6 +186,13 @@ export default function Posts() {
     }
   };
 
+  const totalPages = Math.ceil(posts.length / itemsPerPage);
+
+  // Create a function to handle page navigation
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <>
       <section>
@@ -203,35 +214,57 @@ export default function Posts() {
                   <td colSpan="5">No Data Found In The Table</td>
                 </tr>
               ) : (
-                posts.map((post) => (
-                  <tr key={post.id}>
-                    <td>{post.title}</td>
-                    <td
-                      dangerouslySetInnerHTML={{
-                        __html: post.shortDescription,
-                      }}
-                    />
-                    <td>{post.author}</td>
-                    <td>{post.category}</td>
-                    <td className={styles.tdButtons}>
-                      <button
-                        onClick={() => handleDelete(post.id)}
-                        className={styles.delete}
-                      >
-                        Delete
-                      </button>
-                      <button
-                        onClick={() => handleEditModalOpen(post)}
-                        className={styles.edit}
-                      >
-                        Edit
-                      </button>
-                    </td>
-                  </tr>
-                ))
+                posts
+                  .slice(
+                    (currentPage - 1) * itemsPerPage,
+                    currentPage * itemsPerPage
+                  )
+                  .map((post) => (
+                    <tr key={post.id}>
+                      <td>{post.title}</td>
+                      <td
+                        dangerouslySetInnerHTML={{
+                          __html: post.shortDescription,
+                        }}
+                      />
+                      <td>{post.author}</td>
+                      <td>{post.category}</td>
+                      <td className={styles.tdButtons}>
+                        <button
+                          onClick={() => handleDelete(post.id)}
+                          className={styles.delete}
+                        >
+                          Delete
+                        </button>
+                        <button
+                          onClick={() => handleEditModalOpen(post)}
+                          className={styles.edit}
+                        >
+                          Edit
+                        </button>
+                      </td>
+                    </tr>
+                  ))
               )}
             </tbody>
           </table>
+          <div className={styles.pagination}>
+            {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+              (pageNumber) => (
+                <button
+                  key={pageNumber}
+                  onClick={() => handlePageChange(pageNumber)}
+                  className={
+                    pageNumber === currentPage
+                      ? styles.active
+                      : styles.pageNumber
+                  }
+                >
+                  {pageNumber}
+                </button>
+              )
+            )}
+          </div>
         </div>
         {isEditModalOpen && (
           <div className={styles.modal}>
