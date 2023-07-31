@@ -17,7 +17,7 @@ const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
 });
 
-const itemsPerPage = 10;
+const itemsPerPage = 5;
 
 export default function Posts() {
   const [posts, setPosts] = useState([]);
@@ -280,7 +280,6 @@ export default function Posts() {
                   style={{ width: "100%" }}
                 />
               )}
-              {/* Add the input field for the image */}
               <label>Change Image:</label>
               <input type="file" onChange={handleFileChange} />
               <label>Title:</label>
@@ -290,10 +289,12 @@ export default function Posts() {
                 onChange={(e) => setEditedTitle(e.target.value)}
               />
               <label>Short Description:</label>
-              <ReactQuill
+              <textarea
+                cols="30"
+                rows="10"
                 value={editedShortDescription}
-                onChange={setEditedShortDescription}
-              />
+                onChange={(e) => setEditedShortDescription(e.target.value)}
+              ></textarea>
 
               <label>Author:</label>
               <input

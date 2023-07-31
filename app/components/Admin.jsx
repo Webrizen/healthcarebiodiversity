@@ -125,6 +125,13 @@ export default function Admin() {
               <button>Manage</button>
             </Link>
           </div>
+          <div className={styles.onboarding}>
+            <h1>Manage Content Images!</h1>
+            <p>Now You Can Actually Manage All Images From Database!</p>
+            <Link href="/admin/assets">
+              <button>Manage</button>
+            </Link>
+          </div>
         </div>
       </section>
     </>
