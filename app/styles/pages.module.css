@@ -493,6 +493,35 @@
     background: #fff;
     border-radius: 10px;
 }
+
+.threeCol{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.Cardx{
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    background: #f1f1f1;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+}
+.Cardx span{
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+    align-items: center;
+    width: min-content;
+    color: rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+}
+
   @media only screen and (max-width: 768px) {
 
     .twomainCol,

@@ -111,6 +111,20 @@ export default function Admin() {
               <button>Manage</button>
             </Link>
           </div>
+          <div className={styles.onboarding}>
+            <h1>Post A New Job!</h1>
+            <p>Now You Can Actually Post A New Job To Your Careers Page!</p>
+            <Link href="/admin/careers">
+              <button>Manage</button>
+            </Link>
+          </div>
+          <div className={styles.onboarding}>
+            <h1>Manage Careers!</h1>
+            <p>Manage Job To Your Careers Page!</p>
+            <Link href="/admin/careers/manage">
+              <button>Manage</button>
+            </Link>
+          </div>
         </div>
       </section>
     </>
