@@ -203,6 +203,7 @@
 
 .searchResult:hover {
   background-color: #f0f0f0;
+  color: #1f1f1f;
 }
 .sideTop{
     display: flex;
@@ -212,7 +213,9 @@
     position: -webkit-sticky;
     top: 1%;
 }
-
+.ico{
+    display: none;
+}
 @media only screen and (max-width: 768px) {
     .FooterSection{
         flex-direction: column;
@@ -237,27 +240,31 @@
     }
     .categories{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         gap: 10px;
-        white-space: nowrap;
-        width: 100%;
         justify-content: center;
+        text-align: center;
     }
-    .categories ul{
+    .searchbar{
+        background: #fff;
+    }
+    .ico{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        transition: all 0.5s;
+    }
+    .ico:hover{
+        background: #f1f1f1;
+    }
+    .leftHeader{
         display: flex;
         flex-direction: row;
         gap: 10px;
-        overflow-x: scroll;
-        white-space: nowrap;
-        width: 100%;
-    }
-    .Sidebar .categories ul li{
-        background: #f1f1f1;
-        color: #1f1f1f;
-        -webkit-background-clip: initial;
-        background-clip: initial;
-        -webkit-text-fill-color: initial;
-        border-radius: 35px;
-        font-size: 12px;
+        align-items: center;
     }
   }
