@@ -131,7 +131,7 @@ body::-webkit-scrollbar-thumb {
 .loading-skeleton {
   width: 100%; /* Set your desired width */
   height: 100vh; /* Set your desired height */
-  background-color: #f1f1f1; /* Set your desired background color */
+  background-color: #e7e1e1; /* Set your desired background color */
   border-radius: 4px; /* Add border-radius for rounded corners if needed */
   position: relative;
   overflow: hidden;
