@@ -110,16 +110,21 @@ export default function Home() {
           {/* Show Only 3 POSTS excluding The Post You showed Above  */}
           {latestPosts.length > 0 ? (
             latestPosts.slice(0, 3).map((post) => (
-              <>
+              <React.Fragment key={post.id}>
                 <Link key={post.id} href={`/blogs/${post.id}`} style={{ whiteSpace: 'normal' }}>
-                  <div className={styles.card}>
+                  <div className={styles.CardSide}>
+                    <div className={styles.CardSideLeft}>
+                      <Image src={post.image} alt='Blog Image' width={150} height={150} />
+                    </div>
+                    <div className={styles.CardSideRight}>
                     <span>{post.category}</span>
                     <h2>{post.title}</h2>
                     <p>{post.author}</p>
+                    </div>
                   </div>
                 </Link>
                 <hr />
-              </>
+                </React.Fragment>
             ))
           ) : (
             <div>No Latest Posts Found</div>

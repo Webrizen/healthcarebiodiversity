@@ -6,7 +6,13 @@ import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import { db } from "@/firebase/config";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
-import { BsFacebook, BsInstagram, BsLinkedin, BsTwitter, BsYoutube } from "react-icons/bs";
+import {
+  BsFacebook,
+  BsInstagram,
+  BsLinkedin,
+  BsTwitter,
+  BsYoutube,
+} from "react-icons/bs";
 
 export default function Footer() {
   const Year = new Date().getFullYear();
@@ -142,19 +148,18 @@ export default function Footer() {
             <h4>Trending 🔥</h4>
             <ul>
               {latestPosts.length > 0 ? (
-                latestPosts.slice(0, 3).map((post) => (
-                  <>
-                    <li>
+                <ul>
+                  {latestPosts.slice(0, 3).map((post) => (
+                    <li key={post.id}>
                       <Link
-                        key={post.id}
                         href={`/blogs/${post.id}`}
                         style={{ whiteSpace: "normal" }}
                       >
                         {post.category}
                       </Link>
                     </li>
-                  </>
-                ))
+                  ))}
+                </ul>
               ) : (
                 <div>No Latest Posts Found</div>
               )}
@@ -166,19 +171,33 @@ export default function Footer() {
             <h4>Follow Us</h4>
             <ul>
               <li>
-                <Link href="/"><BsInstagram/> {"  "} Instagram</Link>
+                <Link href="/">
+                  <BsInstagram /> {"  "} Instagram
+                </Link>
               </li>
               <li>
-                <Link href="/"><BsFacebook/>{"  "} Facebook</Link>
+                <Link href="/">
+                  <BsFacebook />
+                  {"  "} Facebook
+                </Link>
               </li>
               <li>
-                <Link href="/"><BsTwitter/>{"  "} Twitter</Link>
+                <Link href="/">
+                  <BsTwitter />
+                  {"  "} Twitter
+                </Link>
               </li>
               <li>
-                <Link href="/"><BsYoutube/>{"  "} YouTube</Link>
+                <Link href="/">
+                  <BsYoutube />
+                  {"  "} YouTube
+                </Link>
               </li>
               <li>
-                <Link href="/"><BsLinkedin/>{"  "} Linkedin</Link>
+                <Link href="/">
+                  <BsLinkedin />
+                  {"  "} Linkedin
+                </Link>
               </li>
             </ul>
           </div>
