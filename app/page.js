@@ -8,10 +8,6 @@ import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import Link from 'next/link';
 
-export const metadata = {
-  title: "Home"
-}
-
 export default function Home() {
   const [latestPost, setLatestPost] = useState({ id: null, data: null });
   const [latestPosts, setLatestPosts] = useState([]);
