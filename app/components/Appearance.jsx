@@ -4,6 +4,7 @@ import Footer from "@/app/components/Footer";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 import "@/app/globals.css";
+import ScrollToTop from "@/app/components/ScrollToTop";
 
 export default function Appearance({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -25,7 +26,10 @@ export default function Appearance({ children }) {
         <div className="sidebar" id="sidebar">
           <Sidebar />
         </div>
-        <div className="main-content">{children}</div>
+        <div className="main-content">
+          <ScrollToTop/>
+          {children}
+          </div>
       </div>
       <Footer />
     </>
