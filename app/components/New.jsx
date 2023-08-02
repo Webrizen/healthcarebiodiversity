@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import "react-quill/dist/quill.snow.css"; // Import the styles for the editor
+import "react-quill/dist/quill.snow.css";
 import {
   collection,
   addDoc,
@@ -24,8 +24,9 @@ export default function New() {
   const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
   const [category, setCategory] = useState("");
+  const [tags, setTags] = useState(""); // State to hold the tags as a comma-separated string
   const [file, setFile] = useState(null);
-  const [categories, setCategories] = useState([]); // State to hold the categories
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     // Function to fetch the categories from Firestore
@@ -39,7 +40,6 @@ export default function New() {
         setCategories(categoriesData);
       } catch (error) {
         console.error("Error fetching categories: ", error);
-        // Show an error message using SweetAlert2
         Swal.fire({
           icon: "error",
           title: "Error",
@@ -59,7 +59,6 @@ export default function New() {
   const handleUpload = async (event) => {
     event.preventDefault();
     try {
-      // Show a loading message using SweetAlert2 while uploading data
       Swal.fire({
         title: "Uploading Data...",
         allowOutsideClick: false,
@@ -68,15 +67,15 @@ export default function New() {
         },
       });
 
-      // Step 1: Upload the image file to Firebase Storage
       const storage = getStorage();
       const storageRef = ref(storage, `images/${file.name}`);
       await uploadBytes(storageRef, file);
 
-      // Step 2: Get the download URL of the uploaded image
       const downloadURL = await getDownloadURL(storageRef);
 
-      // Step 3: Create a new blog post object with the form data, including the image URL
+      // Parse the tags from the comma-separated string and store them as an array
+      const tagsArray = tags.split(",").map((tag) => tag.trim());
+
       const newBlogPost = {
         title,
         shortDescription,
@@ -84,15 +83,14 @@ export default function New() {
         content,
         author,
         category,
+        tags: tagsArray, // Add the tags array to the blog post object
         date: serverTimestamp(),
       };
 
-      // Step 4: Add the new blog post to the "BlogPosts" collection in Firestore
       const docRef = await addDoc(collection(db, "BlogPosts"), newBlogPost);
 
       console.log("Blog post added with ID: ", docRef.id);
 
-      // Show a success message using SweetAlert2 after successful submission
       Swal.fire({
         icon: "success",
         title: "Blog Post Added!",
@@ -100,22 +98,17 @@ export default function New() {
         timer: 1500,
       });
 
-      // Step 5: Clear the form fields and file input after successful submission
       setTitle("");
       setShortDescription("");
       setImage("");
       setContent("");
       setAuthor("");
       setCategory("");
+      setTags("");
       setFile(null);
     } catch (error) {
       console.error("Error adding blog post: ", error);
-      // Show an error message using SweetAlert2 if there's an error
-      Swal.fire(
-        "Error",
-        "An error occurred while adding the blog post.",
-        "error"
-      );
+      Swal.fire("Error", "An error occurred while adding the blog post.", "error");
     }
   };
 
@@ -126,11 +119,7 @@ export default function New() {
         <form onSubmit={handleUpload}>
           <div>
             <label>Title:</label>
-            <input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
+            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
           </div>
           <div>
             <label>Short Description:</label>
@@ -154,18 +143,11 @@ export default function New() {
           </div>
           <div style={{ marginTop: "40px" }}>
             <label>Author:</label>
-            <input
-              type="text"
-              value={author}
-              onChange={(e) => setAuthor(e.target.value)}
-            />
+            <input type="text" value={author} onChange={(e) => setAuthor(e.target.value)} />
           </div>
           <div>
             <label>Categories:</label>
-            <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            >
+            <select value={category} onChange={(e) => setCategory(e.target.value)}>
               <option value="">Select a category</option>
               {categories.map((cat) => (
                 <option key={cat.id} value={cat.name}>
@@ -174,9 +156,15 @@ export default function New() {
               ))}
             </select>
           </div>
+          <div>
+            <label>Tags:</label>
+            <input type="text" value={tags} onChange={(e) => setTags(e.target.value)} />
+            <small>Enter tags separated by commas (e.g., tag1, tag2, tag3)</small>
+          </div>
           <button type="submit">Add Blog Post</button>
         </form>
       </section>
     </>
   );
 }
+

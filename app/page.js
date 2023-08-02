@@ -8,6 +8,10 @@ import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import Link from 'next/link';
 
+export const metadata = {
+  title: "Home"
+}
+
 export default function Home() {
   const [latestPost, setLatestPost] = useState({ id: null, data: null });
   const [latestPosts, setLatestPosts] = useState([]);
@@ -107,7 +111,6 @@ export default function Home() {
           <div>No Latest Post Found</div>
         )}
         <div className={styles.VerticalPosts}>
-          {/* Show Only 3 POSTS excluding The Post You showed Above  */}
           {latestPosts.length > 0 ? (
             latestPosts.slice(0, 3).map((post) => (
               <React.Fragment key={post.id}>

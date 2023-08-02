@@ -16,8 +16,18 @@ export const metadata = {
   description: {
     default: 'The Dynamic & Powerful Blog',
     template: '%s | HealthCare Biodiversity'
+  },
+  referrer: 'origin-when-cross-origin',
+  keywords: {
+    default: ['Next.js', 'React', 'JavaScript'],
+    template: [ '%s']
+  },
+  authors: {
+    default: [{ name: 'Seb' }],
+    template: [  { name: '%s' }]
   }
 }
+
 
 export default function RootLayout({ children }) {
   return (

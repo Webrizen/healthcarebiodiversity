@@ -85,6 +85,7 @@ export default function BlogPostPage({ params }) {
   const { id } = params;
   const [blogData, setBlogData] = useState(null);
   const [otherBlogs, setOtherBlogs] = useState([]);
+  const [tags, setTags] = useState([]);
 
   useEffect(() => {
     // Fetch the specific blog post using the document ID
@@ -141,6 +142,41 @@ export default function BlogPostPage({ params }) {
     fetchOtherBlogs();
   }, [id]);
 
+  useEffect(() => {
+    // Fetch the tags for the specific blog post from Firestore
+    const fetchTags = async () => {
+      try {
+        if (!id) return; // If "id" is not available, return early
+
+        const blogDocRef = doc(db, "BlogPosts", id);
+        const blogDocSnapshot = await getDoc(blogDocRef);
+
+        if (blogDocSnapshot.exists()) {
+          // If the blog post with the given document ID exists, get the tags and set them in the state
+          const { tags } = blogDocSnapshot.data();
+          setTags(tags || []); // Set tags to an empty array if no tags are available
+        } else {
+          // If the blog post does not exist, handle the case
+          Swal.fire(
+            "Blog Post Not Found",
+            "The requested blog post does not exist.",
+            "info"
+          );
+        }
+      } catch (error) {
+        console.error("Error fetching blog post: ", error);
+        Swal.fire(
+          "Error",
+          "An error occurred while fetching the blog post.",
+          "error"
+        );
+      }
+    };
+
+    fetchTags();
+  }, [id]);
+
+
   // If the blog post is not available yet, you can show a loading state or a message
   if (!blogData || !otherBlogs.length) {
     return <div>Loading...</div>;
@@ -171,6 +207,13 @@ export default function BlogPostPage({ params }) {
             <div>No Image</div>
           )}
           <div dangerouslySetInnerHTML={{ __html: blogData.content }} />
+          <div className={styles.Tags}>
+          {tags.length > 0 ? (
+            tags.map((tag) => <span key={tag}>{tag}</span>)
+          ) : (
+            <span>No Tags</span>
+          )}
+        </div>
           <hr />
           <h2>More To Read</h2>
           <div className={styles.threeCol}>

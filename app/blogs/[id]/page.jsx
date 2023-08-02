@@ -1,4 +1,3 @@
-// pages/page.js
 import BlogPostPage from "@/app/components/BlogPostPage";
 import { fetchBlogPostData } from "@/app/utils/firestore";
 
@@ -7,8 +6,9 @@ export async function generateMetadata({ params }) {
   const { title, shortDescription } = await fetchBlogPostData(id);
 
   return {
-    title,
+    title: title,
     description: shortDescription,
+    authors: "Someone From Earth"
   };
 }
 

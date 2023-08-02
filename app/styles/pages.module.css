@@ -527,7 +527,21 @@
     color: rgba(0, 0, 0, 0.3);
     white-space: nowrap;
 }
-
+.Tags{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-top: 10px;
+}
+.Tags span{
+    padding: 10px 20px;
+    font-size: 12px;
+    background: #f1f1f1;
+    border-radius: 35px;
+    white-space: nowrap;
+}
   @media only screen and (max-width: 768px) {
 
     .twomainCol,
@@ -584,5 +598,8 @@
     .CardSide .CardSideLeft img{
         width: 100% !important;
         height: 200px;
+    }
+    .VerticalPosts{
+        border-top: 0.1px solid silver;
     }
 }
