@@ -145,7 +145,7 @@ export default function Footer() {
             </ul>
           </div>
           <div className={styles.footCol}>
-            <h4>Trending 🔥</h4>
+            <h4 className={styles.FootTrend}>Trending 🔥</h4>
             <ul>
               {latestPosts.length > 0 ? (
                 <ul>

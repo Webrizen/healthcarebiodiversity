@@ -542,6 +542,9 @@
     border-radius: 35px;
     white-space: nowrap;
 }
+.VerticalPosts .h2moc{
+    display: none;
+}
   @media only screen and (max-width: 768px) {
 
     .twomainCol,
@@ -601,5 +604,8 @@
     }
     .VerticalPosts{
         border-top: 0.1px solid silver;
+    }
+    .VerticalPosts .h2moc{
+        display: block;
     }
 }

@@ -18,16 +18,63 @@ export const metadata = {
     template: '%s | HealthCare Biodiversity'
   },
   referrer: 'origin-when-cross-origin',
-  keywords: {
-    default: ['Next.js', 'React', 'JavaScript'],
-    template: [ '%s']
-  },
-  authors: {
-    default: [{ name: 'Seb' }],
-    template: [  { name: '%s' }]
-  }
-}
-
+  keywords: [
+    'HealthCare Biodiversity',
+    'Nutrition & Diet',
+    'Fitness & Exercise',
+    'Mental Health & Wellness',
+    'Medical Conditions',
+    "Women's Health",
+    "Men's Health",
+    'Healthy Lifestyle',
+    'Weight Loss & Management',
+    "Children's Health",
+    'Aging & Senior Health',
+    'Chronic Illness Support',
+    'Healthy Recipes',
+    'Healthy Habits',
+    'Wellness Tips',
+    'Health Education',
+    'Preventive Care',
+    'Mindfulness',
+    'Work-Life Balance',
+    'Stress Management',
+    'Healthy Living',
+    'Holistic Health',
+    'Physical Fitness',
+    'Healthy Mindset',
+    'Self-Care',
+    'Well-Being',
+    'Health Benefits',
+    'Disease Prevention',
+    'Healthy Eating',
+    'Mental Clarity',
+    'Healthy Aging',
+    'Natural Remedies',
+    'Fitness Challenges',
+    'Yoga & Meditation',
+    'Exercise Routines',
+    'Healthy Heart',
+    'Health Research',
+    'Health Tips',
+    'Health News',
+    'Healthcare Technology',
+    'Healthy Sleep',
+    'Mental Wellness',
+    'Emotional Health',
+    'Healthy Environment',
+    'Nutritional Supplements',
+    'Healthy Skin',
+    'Healthy Hair',
+    'Hydration',
+    'Immune System',
+    'Healthcare Trends',
+    'Healthcare Solutions',
+    'Healthcare Innovations',
+    'Healthy Workspaces',
+  ],
+  publisher: 'Supratim Bhattacharya',
+};
 
 export default function RootLayout({ children }) {
   return (

@@ -107,6 +107,7 @@ export default function Home() {
           <div>No Latest Post Found</div>
         )}
         <div className={styles.VerticalPosts}>
+          <h2 className={styles.h2moc}>Trending Posts</h2>
           {latestPosts.length > 0 ? (
             latestPosts.slice(0, 3).map((post) => (
               <React.Fragment key={post.id}>

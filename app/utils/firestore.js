@@ -8,12 +8,13 @@ export async function fetchBlogPostData(id) {
     const blogDocSnapshot = await getDoc(blogDocRef);
 
     if (blogDocSnapshot.exists()) {
-      const { title, shortDescription } = blogDocSnapshot.data();
-      return { title, shortDescription };
+      const { title, shortDescription, tags } = blogDocSnapshot.data();
+      const keywords = tags || [];
+      return { title, shortDescription, keywords };
     }
   } catch (error) {
     console.error("Error fetching blog post data: ", error);
   }
 
-  return { title: "Loading...", shortDescription: "Loading..." }; // Default values if data fetching fails
+  return { title: "Loading...", shortDescription: "Loading...", keywords: [] };
 }
