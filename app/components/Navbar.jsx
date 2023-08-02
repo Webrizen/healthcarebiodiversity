@@ -15,7 +15,7 @@ export default function Navbar({ onToggleSidebar }) {
           </div>
         </Link>
         <div className={styles.leftHeader}>
-          <Link href="/admin">
+          <Link href="/newsletters">
             <button style={{ background: '#1f1f1f', color: '#f1f1f1' }} >Newsletters</button>
           </Link>
           {"  "}{"  "}

@@ -545,6 +545,37 @@
 .VerticalPosts .h2moc{
     display: none;
 }
+.newsletterPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+  }
+  
+ .newsletterForm h2 {
+    font-size: 2rem;
+  }
+  
+  .newsletterForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+    gap: 5px;
+    padding: 10px;
+    border-radius: 10px;
+    background: linear-gradient(120deg, rgb(28, 196, 28), rgb(2, 90, 2));
+    color: #f1f1f1;
+  }
+  .newsletterForm input{
+    background: #fff;
+    border: 0.1px solid silver;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
   @media only screen and (max-width: 768px) {
 
     .twomainCol,

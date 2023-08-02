@@ -132,6 +132,13 @@ export default function Admin() {
               <button>Manage</button>
             </Link>
           </div>
+          <div className={styles.onboarding}>
+            <h1>Manage Newsletters!</h1>
+            <p>Now You Can Actually Manage All newsletters From Database! Delte, & View</p>
+            <Link href="/admin/newsletters">
+              <button>Manage</button>
+            </Link>
+          </div>
         </div>
       </section>
     </>
