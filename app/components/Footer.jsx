@@ -126,7 +126,7 @@ export default function Footer() {
                 <Link href="/career">Career</Link>
               </li>
               <li>
-                <Link href="/sitemap">Site Map</Link>
+                <Link href="/sitemap.xml">Site Map</Link>
               </li>
             </ul>
           </div>
