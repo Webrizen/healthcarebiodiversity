@@ -639,4 +639,7 @@
     .VerticalPosts .h2moc{
         display: block;
     }
+    .mid{
+        display: none;
+    }
 }

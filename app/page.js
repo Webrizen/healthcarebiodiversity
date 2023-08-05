@@ -82,7 +82,6 @@ export default function Home() {
   return (
     <>
       <section className={styles.Home}>
-        {/* Show Only 1 Latest POST here  */}
         {latestPost.data ? (
           <Link href={`/blogs/${latestPost.id}`} style={{ whiteSpace: 'normal' }}>
             <div className={styles.HomeCard}>
@@ -115,11 +114,11 @@ export default function Home() {
           {latestPosts.length > 0 ? (
             latestPosts.slice(0, 3).map((post) => (
               <React.Fragment key={post.id}>
-                <Link key={post.id} href={`/blogs/${post.id}`} style={{ whiteSpace: 'normal' }}>
+                <Link key={post.id} href={`/blogs/${post.id}`} style={{ whiteSpace: 'normal' }} >
                   <div className={styles.CardSide}>
                     <div className={styles.CardSideLeft}>
                       <Image src={post.image} alt='Blog Image' placeholder="blur"
-                    blurDataURL={'/placeholder.svg'} width={150} height={150} />
+                        blurDataURL={'/placeholder.svg'} width={150} height={150} />
                     </div>
                     <div className={styles.CardSideRight}>
                       <span>{post.category}</span>
@@ -143,30 +142,37 @@ export default function Home() {
       <section className={styles.HomeNext}>
         <h1>The Latest</h1>
         <hr />
-        {/* Show All Post Below  */}
-        {latestPosts.map((post) => (
-          <Link key={post.id} href={`/blogs/${post.id}`} style={{ whiteSpace: 'normal' }}>
-            <div className={styles.ThreeColCard}>
-              <div className={styles.Left}>
-                <span>{post.category}</span>
-                <h2>{post.title}</h2>
-                <p>{post.author}</p>
-                <p style={{ fontSize: '12px', color: 'rgba(0,0,0,0.6)' }}>{new Date(post.date.seconds * 1000).toLocaleString()}</p>
+        {latestPosts && latestPosts.length > 0 ? (
+          latestPosts.map((post) => (
+            <Link key={post.id} href={`/blogs/${post.id}`} style={{ whiteSpace: 'normal' }}>
+              <div className={styles.ThreeColCard}>
+                <div className={styles.Left}>
+                  <span>{post.category}</span>
+                  <h2>{post.title}</h2>
+                  <p>{post.author}</p>
+                  <p style={{ fontSize: '12px', color: 'rgba(0,0,0,0.6)' }}>{new Date(post.date.seconds * 1000).toLocaleString()}</p>
+                </div>
+                <div className={styles.mid}>
+                  <p dangerouslySetInnerHTML={{ __html: post.shortDescription }} />
+                </div>
+                <div className={styles.Right}>
+                  {post.image ? (
+                    <Image src={post.image} alt="POST IMAGE" placeholder="blur"
+                      blurDataURL={'/placeholder.svg'} width={400} height={300} />
+                  ) : (
+                    <div>No Image</div>
+                  )}
+                </div>
               </div>
-              <div className={styles.mid}>
-                <p dangerouslySetInnerHTML={{ __html: post.shortDescription }} />
-              </div>
-              <div className={styles.Right}>
-                {post.image ? (
-                  <Image src={post.image} alt="POST IMAGE" placeholder="blur"
-                  blurDataURL={'/placeholder.svg'} width={400} height={300} />
-                ) : (
-                  <div>No Image</div>
-                )}
-              </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <div className="loading-skeleton"></div>
+            <div className="loading-skeleton"></div>
+            <div className="loading-skeleton"></div>
+          </div>
+        )}
       </section>
     </>
   );
