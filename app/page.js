@@ -95,6 +95,7 @@ export default function Home() {
                     placeholder="blur"
                     blurDataURL={'/placeholder.svg'}
                     width={400}
+                    loading='eager'
                     height={500}
                     style={{ width: 'auto' }}
                   />
