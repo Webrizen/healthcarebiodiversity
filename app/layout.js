@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react';
 import { Roboto, Poppins  } from 'next/font/google';
 import Appearance from '@/app/components/Appearance';
 import './globals.css';
@@ -86,6 +87,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={poppins.className}>
       <body>
           <Appearance children={children} />
+          <Analytics />
       </body>
     </html>
   )
