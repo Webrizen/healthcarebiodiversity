@@ -201,8 +201,9 @@ export default function BlogPostPage({ params }) {
               width={400}
               height={300}
               className={styles.Image}
-              priority
-            />
+              placeholder="blur"
+              blurDataURL={'/placeholder.svg'}            
+              />
           ) : (
             <div>No Image</div>
           )}
@@ -227,7 +228,8 @@ export default function BlogPostPage({ params }) {
                       width={400}
                       height={300}
                       className={styles.NextImage}
-                      priority={true}
+                      placeholder="blur"
+                    blurDataURL={'/placeholder.svg'}
                     />
                   ) : (
                     <div>No Image</div>

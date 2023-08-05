@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '@/app/styles/pages.module.css';
 import Image from 'next/image';
-import { collection, getDocs, onSnapshot  } from 'firebase/firestore';
+import { collection, getDocs, onSnapshot } from 'firebase/firestore';
 import { db } from '@/firebase/config';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
@@ -93,7 +93,8 @@ export default function Home() {
                   <Image
                     src={latestPost.data.image}
                     alt="POST IMAGE"
-                    priority 
+                    placeholder="blur"
+                    blurDataURL={'/placeholder.svg'}
                     width={400}
                     height={500}
                     style={{ width: 'auto' }}
@@ -106,8 +107,8 @@ export default function Home() {
           </Link>
         ) : (
           <div className={styles.HomeCard}>
-              <div className="loading-skeleton-full"></div>
-            </div>
+            <div className="loading-skeleton-full"></div>
+          </div>
         )}
         <div className={styles.VerticalPosts}>
           <h2 className={styles.h2moc}>Trending Posts</h2>
@@ -117,23 +118,24 @@ export default function Home() {
                 <Link key={post.id} href={`/blogs/${post.id}`} style={{ whiteSpace: 'normal' }}>
                   <div className={styles.CardSide}>
                     <div className={styles.CardSideLeft}>
-                      <Image src={post.image} alt='Blog Image' priority  width={150} height={150} />
+                      <Image src={post.image} alt='Blog Image' placeholder="blur"
+                    blurDataURL={'/placeholder.svg'} width={150} height={150} />
                     </div>
                     <div className={styles.CardSideRight}>
-                    <span>{post.category}</span>
-                    <h2>{post.title}</h2>
-                    <p>{post.author}</p>
+                      <span>{post.category}</span>
+                      <h2>{post.title}</h2>
+                      <p>{post.author}</p>
                     </div>
                   </div>
                 </Link>
                 <hr />
-                </React.Fragment>
+              </React.Fragment>
             ))
           ) : (
             <>
-            <div className="loading-skeleton"></div>
-            <div className="loading-skeleton"></div>
-            <div className="loading-skeleton"></div>
+              <div className="loading-skeleton"></div>
+              <div className="loading-skeleton"></div>
+              <div className="loading-skeleton"></div>
             </>
           )}
         </div>
@@ -156,7 +158,8 @@ export default function Home() {
               </div>
               <div className={styles.Right}>
                 {post.image ? (
-                  <Image src={post.image} alt="POST IMAGE" priority  width={400} height={300} />
+                  <Image src={post.image} alt="POST IMAGE" placeholder="blur"
+                  blurDataURL={'/placeholder.svg'} width={400} height={300} />
                 ) : (
                   <div>No Image</div>
                 )}

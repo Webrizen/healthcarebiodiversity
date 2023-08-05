@@ -11,7 +11,7 @@ export default function Navbar({ onToggleSidebar }) {
       <header className={styles.Navbar}>
         <Link href="/">
           <div className={styles.logo}>
-            <Image src={Logo} alt="HealthCare biodiversity" />
+            <Image src={Logo} priority alt="HealthCare biodiversity" />
           </div>
         </Link>
         <div className={styles.leftHeader}>
