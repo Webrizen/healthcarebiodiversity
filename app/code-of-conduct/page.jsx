@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Code Of Conduct",
-  description: `...`,
+  description: `At HealthCare BioDiversity, we strive to create a respectful and welcoming environment for all attendees. We base our Code of Conduct on the principles of inclusion, equality, diversity, and respect. Please review the guidelines below to ensure that everyone can safely enjoy our events.`,
 };
 
 export default function page() {
