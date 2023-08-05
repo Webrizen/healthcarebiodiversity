@@ -193,6 +193,16 @@ export default function Posts() {
     setCurrentPage(pageNumber);
   };
 
+  const modules = {
+    toolbar: [
+      [{ header: "1" }, { header: "2" }, { font: [] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }],
+      ["link", "image"],
+      ["clean"],
+    ],
+  };
+
   return (
     <>
       <section>
@@ -319,6 +329,7 @@ export default function Posts() {
                 value={editedContent}
                 onChange={setEditedContent}
                 style={{ height: "300px" }}
+                modules={modules}
               />
             </div>
             <button onClick={handleEditSubmit}>Save Changes</button>
