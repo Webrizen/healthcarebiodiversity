@@ -201,7 +201,7 @@ export default function BlogPostPage({ params }) {
               width={400}
               height={300}
               className={styles.Image}
-              priority={true}
+              priority
             />
           ) : (
             <div>No Image</div>

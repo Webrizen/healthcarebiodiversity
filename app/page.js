@@ -93,7 +93,7 @@ export default function Home() {
                   <Image
                     src={latestPost.data.image}
                     alt="POST IMAGE"
-                    loading="lazy"
+                    priority 
                     width={400}
                     height={500}
                     style={{ width: 'auto' }}
@@ -156,7 +156,7 @@ export default function Home() {
               </div>
               <div className={styles.Right}>
                 {post.image ? (
-                  <Image src={post.image} alt="POST IMAGE" loading="lazy" width={400} height={300} />
+                  <Image src={post.image} alt="POST IMAGE" priority  width={400} height={300} />
                 ) : (
                   <div>No Image</div>
                 )}
