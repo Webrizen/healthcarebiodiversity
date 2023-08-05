@@ -30,7 +30,7 @@ export default function page() {
             <p className={styles.mission}>
               Our Mission:
             </p>
-            <ul className={styles.missionList}>
+            <ul className={styles.missionList} style={{ listStyle: 'none' }}>
               <li>Advance medical research for sustainable healthcare solutions.</li>
               <li>Raise awareness about the importance of biodiversity conservation.</li>
               <li>Promote ethical practices that prioritize both human health and the environment.</li>
