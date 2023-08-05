@@ -131,9 +131,9 @@ export default function Sidebar() {
             {categories.length > 0 ? (
               <ul>
                 {categories.map((category) => (
-                  <Link href={`/categories/${formatCategory(category)}`} key={category}>
-                    <li>{category}</li>
-                  </Link>
+                  <li  key={category}>
+                    <Link href={`/categories/${formatCategory(category)}`}>{category}</Link>
+                  </li>
                 ))}
               </ul>
             ) : (
