@@ -108,7 +108,7 @@ export default function Footer() {
       <section className={styles.FooterSection}>
         <div className={styles.footLeft}>
           <div className={styles.footCol}>
-            <h4>About</h4>
+            <h1 style={{ fontSize: '1.3rem' }}>About</h1>
             <ul>
               <li>
                 <Link href="/about">HealthCare Biodiversity</Link>
@@ -131,7 +131,7 @@ export default function Footer() {
             </ul>
           </div>
           <div className={styles.footCol}>
-            <h4>Legal</h4>
+            <h1 style={{ fontSize: '1.3rem' }}>Legal</h1>
             <ul>
               <li>
                 <Link href="/terms-and-conditions">Terms of Service</Link>
@@ -145,7 +145,7 @@ export default function Footer() {
             </ul>
           </div>
           <div className={styles.footCol}>
-            <h4 className={styles.FootTrend}>Trending 🔥</h4>
+            <h1 style={{ fontSize: '1.3rem' }} className={styles.FootTrend}>Trending 🔥</h1>
             <ul>
               {latestPosts.length > 0 ? (
                 <ul>
@@ -168,7 +168,7 @@ export default function Footer() {
         </div>
         <div className={styles.footRight}>
           <div className={styles.footCol}>
-            <h4>Follow Us</h4>
+            <h1 style={{ fontSize: '1.3rem' }}>Follow Us</h1>
             <ul>
               <li>
                 <Link href="https://www.instagram.com/healthcarebiodiversity/">

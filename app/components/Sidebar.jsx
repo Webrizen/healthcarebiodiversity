@@ -128,7 +128,6 @@ export default function Sidebar() {
             </div>
           )}
           <div className={styles.categories}>
-            <ul>
             {categories.length > 0 ? (
               <ul>
                 {categories.map((category) => (
@@ -144,7 +143,6 @@ export default function Sidebar() {
             <div className="loading-skeleton-link"></div>
               </div>
             )}
-            </ul>
           </div>
         </div>
       </div>
