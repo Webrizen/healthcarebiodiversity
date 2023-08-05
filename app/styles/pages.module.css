@@ -159,11 +159,6 @@
         padding: 0px;
     }
 
-    .ThreeColCard {
-        grid-template-columns: 1fr;
-        overflow: hidden;
-    }
-
     .HomeCard img {
         width: 100% !important;
         height: auto;
@@ -579,12 +574,24 @@
   @media only screen and (max-width: 768px) {
 
     .twomainCol,
-    .ThreeColCard,
     .twocol,
     .threeCol {
         grid-template-columns: 1fr;
     }
-
+    .ThreeColCard{
+        grid-template-columns: 1fr 1fr;
+        font-size: 12px;
+    }
+    .ThreeColCard .Left h2{
+        font-size: 1.2rem;
+    }
+.ThreeColCard .Right{
+    align-items: flex-start;
+    justify-content: right;
+}
+.ThreeColCard .Right img{
+    height: auto !important;
+}
     .mainContent img {
         width: 90vw;
     }

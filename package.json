@@ -18,7 +18,6 @@
     "react-icons": "^4.10.1",
     "react-quill": "^2.0.0",
     "react-scroll": "^1.8.9",
-    "slugify": "^1.6.6",
     "sweetalert2": "^11.7.20"
   },
   "devDependencies": {
