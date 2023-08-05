@@ -112,6 +112,17 @@ export default function New() {
     }
   };
 
+  const modules = {
+    toolbar: [
+      [{ header: "1" }, { header: "2" }, { font: [] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }],
+      ["link", "image"],
+      ["clean"],
+    ],
+  };
+
+
   return (
     <>
       <section className={styles.AddBlog}>
@@ -139,6 +150,7 @@ export default function New() {
               value={content}
               onChange={setContent}
               style={{ height: "400px", borderRadius: "4px" }}
+              modules={modules}
             />
           </div>
           <div style={{ marginTop: "40px" }}>

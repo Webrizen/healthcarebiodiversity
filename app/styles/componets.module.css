@@ -151,11 +151,17 @@
     height: 100vh;
    display: flex;
    justify-content: center;
+   flex-direction: column;
+   gap: 10px;
+   background: #fff;
    align-items: center;
   }
 .boxx{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     width: min-content;
-    height: 200px;
+    height: min-content;
 }
  .Loading svg {
     display:block;

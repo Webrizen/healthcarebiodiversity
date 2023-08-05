@@ -1,5 +1,4 @@
 import './globals.css';
-import { AuthContextProvider } from '@/context/AuthContext'
 import { Poppins } from 'next/font/google';
 import Appearance from '@/app/components/Appearance';
 
@@ -80,9 +79,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <AuthContextProvider>
           <Appearance children={children} />
-        </AuthContextProvider>
       </body>
     </html>
   )

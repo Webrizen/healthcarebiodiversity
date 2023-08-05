@@ -31,7 +31,11 @@ export default function Sidebar() {
         setCategories(Array.from(allCategories));
       } catch (error) {
         console.error("Error fetching categories: ", error);
-        Swal.fire("Error", "An error occurred while fetching categories.", "error");
+        Swal.fire(
+          "Error",
+          "An error occurred while fetching categories.",
+          "error"
+        );
       }
     };
 
@@ -52,7 +56,10 @@ export default function Sidebar() {
       const fetchAllPosts = async () => {
         try {
           const querySnapshot = await getDocs(collection(db, "BlogPosts"));
-          const postsData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+          const postsData = querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
 
           // Filter the posts based on the search query
           const filteredPosts = postsData.filter(
@@ -60,7 +67,10 @@ export default function Sidebar() {
               post.title.toLowerCase().includes(formattedQuery) ||
               post.shortDescription.toLowerCase().includes(formattedQuery) ||
               post.category.toLowerCase().includes(formattedQuery) ||
-              post.category.toLowerCase().replace(/\s+/g, "-").includes(formattedQuery)
+              post.category
+                .toLowerCase()
+                .replace(/\s+/g, "-")
+                .includes(formattedQuery)
           );
 
           setSearchResults(filteredPosts);
@@ -82,47 +92,60 @@ export default function Sidebar() {
     return category.replace(/\s+/g, "-").replace(/&/g, "and");
   };
 
-
   return (
     <>
       <div className={styles.Sidebar}>
         <div className={styles.sideTop}>
-        <div className={styles.searchbar}>
-        <input
-            type="search"
-            placeholder="Search..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          <span>
-            <IoMdSearch />{" "}
-          </span>
-        </div>
-        <hr />
-        {searchQuery && (
-          <div className={styles.searchResults}>
-            {searchResults.map((result) => (
-              <Link href={`/blogs/${result.id}`} key={result.id} style={{ whiteSpace: 'normal' }}>
-                <div className={styles.searchResult}>{result.title}</div>
-              </Link>
-            ))}
-            {searchResults.length === 0 && (
-              <p>No posts found for the search query.</p>
-            )}
+          <div className={styles.searchbar}>
+            <input
+              type="search"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <span>
+              <IoMdSearch />{" "}
+            </span>
           </div>
-        )}
-        <div className={styles.categories}>
-          <ul>
-            {categories.map((category) => (
-              <Link
-                href={`/categories/${formatCategory(category)}`}
-                key={category}
-              >
-                <li>{category}</li>
-              </Link>
-            ))}
-          </ul>
-        </div>
+          <hr />
+          {searchQuery && (
+            <div className={styles.searchResults}>
+              {searchResults.length > 0 ? (
+                searchResults.map((result) => (
+                  <Link
+                    href={`/blogs/${result.id}`}
+                    key={result.id}
+                    style={{ whiteSpace: "normal" }}
+                  >
+                    <div className={styles.searchResult}>{result.title}</div>
+                  </Link>
+                ))
+              ) : (
+                <>
+                  <div className="loading-skeleton"></div>
+                </>
+              )}
+            </div>
+          )}
+          <div className={styles.categories}>
+            <ul>
+            {categories.length > 0 ? (
+              <ul>
+                {categories.map((category) => (
+                  <Link href={`/categories/${formatCategory(category)}`} key={category}>
+                    <li>{category}</li>
+                  </Link>
+                ))}
+              </ul>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <div className="loading-skeleton-link"></div>
+            <div className="loading-skeleton-link"></div>
+            <div className="loading-skeleton-link"></div>
+              </div>
+            )}
+            </ul>
+          </div>
         </div>
       </div>
     </>

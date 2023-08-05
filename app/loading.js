@@ -6,6 +6,6 @@ export const metadata = {
 
 export default function loading() {
     return (
-        <div class="loading-skeleton"></div>
+        <div className="loading-skeleton-full"></div>
     )
 }

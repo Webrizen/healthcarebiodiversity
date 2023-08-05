@@ -171,30 +171,30 @@ export default function Footer() {
             <h4>Follow Us</h4>
             <ul>
               <li>
-                <Link href="/">
+                <Link href="https://www.instagram.com/healthcarebiodiversity/">
                   <BsInstagram /> {"  "} Instagram
                 </Link>
               </li>
               <li>
-                <Link href="/">
+                <Link href="https://www.facebook.com/people/healthcarebiodiversity/100087657655078/">
                   <BsFacebook />
                   {"  "} Facebook
                 </Link>
               </li>
               <li>
-                <Link href="/">
+                <Link href="https://twitter.com/Healthcarebiodi">
                   <BsTwitter />
                   {"  "} Twitter
                 </Link>
               </li>
               <li>
-                <Link href="/">
+                <Link href="https://www.youtube.com/channel/UCu7OUdGxpGkVAgxGetxmPww">
                   <BsYoutube />
                   {"  "} YouTube
                 </Link>
               </li>
               <li>
-                <Link href="/">
+                <Link href="https://www.linkedin.com/company/90689092/admin/feed/posts/">
                   <BsLinkedin />
                   {"  "} Linkedin
                 </Link>

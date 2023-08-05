@@ -7,6 +7,7 @@ import { db } from '@/firebase/config';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import Link from 'next/link';
+import Loading from '@/app/components/Loading';
 
 export default function Home() {
   const [latestPost, setLatestPost] = useState({ id: null, data: null });
@@ -104,7 +105,9 @@ export default function Home() {
             </div>
           </Link>
         ) : (
-          <div>No Latest Post Found</div>
+          <div className={styles.HomeCard}>
+              <div className="loading-skeleton-full"></div>
+            </div>
         )}
         <div className={styles.VerticalPosts}>
           <h2 className={styles.h2moc}>Trending Posts</h2>
@@ -127,7 +130,11 @@ export default function Home() {
                 </React.Fragment>
             ))
           ) : (
-            <div>No Latest Posts Found</div>
+            <>
+            <div className="loading-skeleton"></div>
+            <div className="loading-skeleton"></div>
+            <div className="loading-skeleton"></div>
+            </>
           )}
         </div>
       </section>

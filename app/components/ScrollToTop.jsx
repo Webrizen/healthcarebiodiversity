@@ -29,7 +29,7 @@ const ScrollToTop = () => {
   return (
     <div>
       {isShown && (
-        <ScrollLink to="top" smooth={true} duration={500} offset={-100}>
+        <ScrollLink to="top" smooth={true} duration={500} offset={-100} style={{ zIndex: '9999' }}>
           <div className="scrollToTopButton" onClick={scrollToTop}>
             <FaArrowUp />
           </div>
