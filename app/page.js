@@ -86,6 +86,7 @@ export default function Home() {
           <Link href={`/blogs/${latestPost.id}`} style={{ whiteSpace: 'normal' }}>
             <div className={styles.HomeCard}>
               <>
+              <p>{latestPost.data.category}</p>
                 <h1>{latestPost.data.title}</h1>
                 <span>{latestPost.data.author}</span>
                 {latestPost.data.image ? (
