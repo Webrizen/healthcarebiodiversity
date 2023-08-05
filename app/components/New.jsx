@@ -112,15 +112,14 @@ export default function New() {
     }
   };
 
-  const modules = {
-    toolbar: [
-      [{ header: "1" }, { header: "2" }, { font: [] }],
-      ["bold", "italic", "underline", "strike", "blockquote"],
-      [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }],
-      ["link", "image"],
-      ["clean"],
-    ],
-  };
+const modules = {
+  toolbar: [
+    [{ header: "1" }, { header: "2" }, { header: "3" }, { header: "4" }, { font: [] }],
+    ["bold", "italic", "underline", "strike", "blockquote"],
+    [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }],
+    ["link", "image", "code", "code-block", "blockquote", "clean"],
+  ],
+};
 
 
   return (

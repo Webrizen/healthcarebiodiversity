@@ -7,6 +7,7 @@ import {
   doc,
   updateDoc,
 } from "firebase/firestore";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import Swal from "sweetalert2";
 import { db } from "@/firebase/config";
 import styles from "@/app/styles/admin.module.css";
@@ -29,6 +30,7 @@ export default function Posts() {
   const [editedCategory, setEditedCategory] = useState("");
   const [editedContent, setEditedContent] = useState("");
   const [editedImage, setEditedImage] = useState("");
+  const [editedImageFile, setEditedImageFile] = useState(null);
   const [previewImage, setPreviewImage] = useState("");
   const [categories, setCategories] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -121,7 +123,7 @@ export default function Posts() {
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
-    setEditedImage(selectedFile);
+    setEditedImageFile(selectedFile); // Update the editedImageFile state with the selected file
 
     // Generate a preview of the selected image
     const reader = new FileReader();
@@ -145,15 +147,29 @@ export default function Posts() {
           Swal.showLoading();
         },
       });
-
+  
+      let editedImageURL = editedImage; // Use the current editedImage URL as the default value
+  
+      if (editedImageFile) {
+        // If the editedImageFile contains a new image, upload it to Firebase Storage
+        const storage = getStorage();
+        const storageRef = ref(storage, `images/${editedImageFile.name}`);
+        await uploadBytes(storageRef, editedImageFile);
+  
+        // Get the download URL of the uploaded image
+        editedImageURL = await getDownloadURL(storageRef);
+      }
+  
+      // Update the post data in Firestore
       await updateDoc(doc(db, "BlogPosts", selectedPost.id), {
         title: editedTitle,
         shortDescription: editedShortDescription,
         author: editedAuthor,
         category: editedCategory,
         content: editedContent,
+        image: editedImageURL, // Update the image URL with the new or existing image URL
       });
-
+  
       // Update the local state with the edited post data
       setPosts((prevPosts) =>
         prevPosts.map((post) =>
@@ -165,13 +181,14 @@ export default function Posts() {
                 author: editedAuthor,
                 category: editedCategory,
                 content: editedContent,
+                image: editedImageURL,
               }
             : post
         )
       );
-
+  
       setIsEditModalOpen(false);
-
+  
       // Show a success message using SweetAlert2 after updating data
       Swal.fire({
         icon: "success",
@@ -185,6 +202,7 @@ export default function Posts() {
       Swal.fire("Error", "An error occurred while updating data.", "error");
     }
   };
+  
 
   const totalPages = Math.ceil(posts.length / itemsPerPage);
 
@@ -195,11 +213,10 @@ export default function Posts() {
 
   const modules = {
     toolbar: [
-      [{ header: "1" }, { header: "2" }, { font: [] }],
+      [{ header: "1" }, { header: "2" }, { header: "3" }, { font: [] }],
       ["bold", "italic", "underline", "strike", "blockquote"],
       [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }],
-      ["link", "image"],
-      ["clean"],
+      ["link", "image", "code", "code-block", "blockquote", "clean"],
     ],
   };
 
