@@ -117,7 +117,7 @@ export default function Home() {
                 <Link key={post.id} href={`/blogs/${post.id}`} style={{ whiteSpace: 'normal' }}>
                   <div className={styles.CardSide}>
                     <div className={styles.CardSideLeft}>
-                      <Image src={post.image} alt='Blog Image' width={150} height={150} />
+                      <Image src={post.image} alt='Blog Image' priority  width={150} height={150} />
                     </div>
                     <div className={styles.CardSideRight}>
                     <span>{post.category}</span>
