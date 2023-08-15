@@ -4,21 +4,21 @@ import styles from "@/app/styles/latestPosts.module.css";
 import { BsDot } from "react-icons/bs";
 import { checkEnvironment } from "./checkEnvironment";
 
-async function getData() {
-  const res = await fetch(
-    checkEnvironment().concat("/api/latestposts"),
-    { cache: "force-cache" },
-    { next: { revalidate: 3600 } }
-  );
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
+// async function getData() {
+//   const res = await fetch(
+//     checkEnvironment().concat("/api/latestposts"),
+//     { cache: "force-cache" },
+//     { next: { revalidate: 3600 } }
+//   );
+//   if (!res.ok) {
+//     throw new Error("Failed to fetch data");
+//   }
 
-  return res.json();
-}
+//   return res.json();
+// }
 
 const LatestPost = async () => {
-  const data = await getData();
+  // const data = await getData();
   return (
     <>
     {/* <div className={styles.latestPost}>

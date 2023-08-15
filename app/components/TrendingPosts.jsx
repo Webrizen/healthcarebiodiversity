@@ -3,18 +3,18 @@ import styles from '@/app/styles/TrendingPosts.module.css';
 import Image from 'next/image';
 import { checkEnvironment } from './checkEnvironment';
 
-async function getData() {
-  const res = await fetch(checkEnvironment().concat("/api/trendingposts"), { cache: 'force-cache' }, { next: { revalidate: 3600 } });
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
+// async function getData() {
+//   const res = await fetch(checkEnvironment().concat("/api/trendingposts"), { cache: 'force-cache' }, { next: { revalidate: 3600 } });
+//   if (!res.ok) {
+//     throw new Error('Failed to fetch data');
+//   }
 
-  return res.json();
-}
+//   return res.json();
+// }
 
 const TrendingPosts = async () => {
-  const data = await getData();
-  const trendingPosts = data.trendingPosts.slice(0, 5); // Only take the first 5 posts
+  // const data = await getData();
+  // const trendingPosts = data.trendingPosts.slice(0, 5); // Only take the first 5 posts
 
   return (
     <div className={styles.vertposts}>
