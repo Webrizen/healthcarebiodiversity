@@ -17,35 +17,24 @@
     text-align: center;
 }
 
-.Home {
+.Home{
     display: grid;
-    grid-template-columns: 60% 1fr;
-    gap: 10px;
-    padding: 10px;
-}
-
-.HomeCard {
+    grid-template-columns: 1fr 30%;
     width: 100%;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
     gap: 10px;
-    border-radius: 10px;
-    justify-content: left;
-    cursor: pointer;
-    transition: 0.5s;
 }
 
-.HomeCard:hover {
-    opacity: 0.6;
+.HomeCard{
+    width: 100%;
+    height: auto;
 }
 
-.HomeCard p{
+/* .HomeCard p{
     background: linear-gradient(120deg, rgb(28, 196, 28), rgb(2, 90, 2));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-}
+} */
 
 .VerticalPosts {
     width: 100%;
@@ -53,7 +42,10 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    border-left: 2px solid rgba(0,0,0,0.1);
 }
+
+
 
 .HomeCard h1 {
     font-size: 2.5rem;
@@ -63,34 +55,6 @@
     border-radius: 10px;
 }
 
-.VerticalPosts .CardSide {
-    width: 100%;
-    padding: 10px;
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 10px;
-    cursor: pointer;
-    transition: 0.5s;
-}
-
-.VerticalPosts .CardSide:hover {
-    opacity: 0.7;
-}
-
-.VerticalPosts .CardSide span {
-    background: linear-gradient(120deg, rgb(28, 196, 28), rgb(2, 90, 2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-.CardSide .CardSideLeft{
-    display: flex;
-    justify-content: flex-start;
-}
-.CardSide .CardSideLeft img{
-    border-radius: 10px;
-    object-fit: cover;
-}
 .HomeNext {
     width: 100%;
     padding: 10px;
@@ -543,9 +507,6 @@
     background: #f1f1f1;
     border-radius: 35px;
     white-space: nowrap;
-}
-.VerticalPosts .h2moc{
-    display: none;
 }
 .newsletterPage {
     display: flex;

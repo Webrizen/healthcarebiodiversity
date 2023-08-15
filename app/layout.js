@@ -1,18 +1,6 @@
 import { Analytics } from '@vercel/analytics/react';
-import { Roboto, Poppins  } from 'next/font/google';
 import Appearance from '@/app/components/Appearance';
 import './globals.css';
-
-const roboto  = Roboto ({
-  weight: ['100', '300', '400', '400', '500', '700', '900'],
-  subsets: ['latin'],
-  display: 'block', 
-})
-const poppins = Poppins({
-  weight: ['100', '200', '300', '400', '400', '500', '600', '700', '800', '900'],
-  subsets: ['latin']
-
-})
 
 export const metadata = {
   title: {
@@ -84,7 +72,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={poppins.className}>
+    <html lang="en">
       <body>
           <Appearance children={children} />
           <Analytics />

@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
   scroll-behavior: smooth;
-  transition: all 0.3s;
+  font-family: 'Noto Sans', sans-serif;
 }
 
 body {
@@ -93,6 +95,7 @@ body::-webkit-scrollbar-thumb {
   border-radius: 0px;
   border-right: 0.1px solid silver;
   padding: 10px;
+  z-index: 999;
 }
 
 .main-content {
@@ -125,7 +128,7 @@ body::-webkit-scrollbar-thumb {
   text-align: center;
   margin-bottom: 4px;
 }
-/* Add your desired background color for the loading skeleton */
+
 .loading-skeleton {
   width: 100%; /* Set your desired width */
   height: 200px; /* Set your desired height */

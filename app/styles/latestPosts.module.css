@@ -1,0 +1,56 @@
+.latestPost{
+    width: 100%;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+.latestPost img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.latestPost .info{
+    background: rgba(0,0,0,0.1);
+    backdrop-filter: blur(90px);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    transition: bottom 0.7s ease-in-out;
+}
+
+.latestPost:hover .info{
+    bottom: -200%;
+}
+
+.latestPost .info p{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    color: #fff;
+}
+
+.latestPost .info{
+    color: #eee;
+}
+
+@media only screen and (max-width: 768px) {
+    .latestPost img{
+        height: 400px;
+    }
+    .latestPost .info h1{
+        font-size: 25px;
+    }
+    .latestPost .info span{
+        font-size: 12px;
+    }
+    .latestPost .info{
+        bottom: 0;
+    }
+    .latestPost:active .info{
+        bottom: -200%;
+    }
+}
