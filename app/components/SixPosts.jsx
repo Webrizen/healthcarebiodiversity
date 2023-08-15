@@ -2,9 +2,10 @@ import React from "react";
 import styles from "@/app/styles/sixposts.module.css";
 import Image from "next/image";
 import { BsDot } from "react-icons/bs";
+import { checkEnvironment } from "./checkEnvironment";
 
 async function getData() {
-  const res = await fetch("https://healthcarebiodiversity.vercel.app/api", {
+  const res = await fetch(checkEnvironment().concat("/api"), {
     cache: "force-cache",
   });
   if (!res.ok) {

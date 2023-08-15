@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from '@/app/styles/TrendingPosts.module.css';
 import Image from 'next/image';
+import { checkEnvironment } from './checkEnvironment';
 
 async function getData() {
-  const res = await fetch('https://healthcarebiodiversity.vercel.app/api/trendingposts', { cache: 'force-cache' }, { next: { revalidate: 3600 } });
+  const res = await fetch(checkEnvironment().concat("/api/trendingposts"), { cache: 'force-cache' }, { next: { revalidate: 3600 } });
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
