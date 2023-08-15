@@ -45,7 +45,12 @@
     border-left: 2px solid rgba(0,0,0,0.1);
 }
 
-
+.cattfatty{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
 
 .HomeCard h1 {
     font-size: 2.5rem;

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LatestPost from '@/app/components/LatestPost';
 import TrendingPosts from '@/app/components/TrendingPosts';
 import SixPosts from '@/app/components/SixPosts';
+import Sidebar from './Sidebar';
 
 export default function Home() {
   
@@ -15,6 +16,11 @@ export default function Home() {
           </div>
           <div className={styles.VerticalPosts}>
             <TrendingPosts />
+            <div className={styles.cattfatty}>
+            <h2>Categories</h2>
+            <hr />
+            <Sidebar />
+            </div>
           </div>
         </section>
       </>

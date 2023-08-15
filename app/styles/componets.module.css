@@ -39,6 +39,7 @@
     border: 0.1px solid silver;
     border-radius: 4px;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .searchbar span {
@@ -222,8 +223,24 @@
     position: -webkit-sticky;
     top: 1%;
 }
+.leftHeader{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
 .ico{
-    display: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    transition: all 0.5s;
+}
+.ico:hover{
+    background: #f1f1f1;
 }
 @media only screen and (max-width: 768px) {
     .FooterSection{

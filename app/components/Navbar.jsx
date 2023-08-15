@@ -3,9 +3,9 @@ import styles from '@/app/styles/componets.module.css';
 import Image from 'next/image';
 import Logo from '@/app/assets/logo.png';
 import Link from 'next/link';
-import { CgMenu } from 'react-icons/cg';
+import { BsSearch } from 'react-icons/bs';
 
-export default function Navbar({ onToggleSidebar }) {
+export default function Navbar() {
   return (
     <>
       <header className={styles.Navbar}>
@@ -19,9 +19,11 @@ export default function Navbar({ onToggleSidebar }) {
             <button style={{ background: '#1f1f1f', color: '#f1f1f1' }} >Newsletters</button>
           </Link>
           {"  "}{"  "}
+          <Link href="/search">
           <div className={styles.ico}>
-          <CgMenu onClick={onToggleSidebar} />
+          <BsSearch size={20} />
           </div>
+          </Link>
         </div>
       </header>
     </>

@@ -10,14 +10,8 @@
 
 body {
   /* Light mode styles */
-  background: #f1f1f1;
+  background: #fff;
   color: #1f1f1f;
-}
-
-body.dark-mode {
-  /* Dark mode styles */
-  background: #1f1f1f;
-  color: #f1f1f1;
 }
 
 a {
@@ -57,6 +51,10 @@ select {
   white-space: nowrap;
 }
 
+ul{
+  list-style: none;
+}
+
 /* ===== Scrollbar CSS ===== */
 
 /* Firefox */
@@ -83,7 +81,7 @@ body::-webkit-scrollbar-thumb {
 /* Main Layout  */
 .main-layout {
   display: grid;
-  grid-template-columns: 1fr 85%;
+  grid-template-columns: 1fr;
   width: 100vw;
   height: auto;
 }
@@ -100,6 +98,8 @@ body::-webkit-scrollbar-thumb {
 
 .main-content {
   padding: 10px;
+  max-width: 80vw;
+  margin: 0 auto;
   height: 100%;
   background: #fff;
 }
@@ -236,6 +236,9 @@ body::-webkit-scrollbar-thumb {
 @media only screen and (max-width: 768px) {
   .main-layout {
     grid-template-columns: 1fr;
+  }
+  .main-content{
+    max-width: 100%;
   }
   .sidebar {
     display: none;

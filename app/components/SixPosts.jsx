@@ -17,7 +17,7 @@ async function getData() {
 
 const SixPosts = async () => {
   const data = await getData();
-  const posts = data.posts.slice(-6);
+  const posts = data.posts.slice(-8);
   const svgSource = `/blur.svg`;
   const base64Svg = `data:image/svg+xml;base64,${btoa(svgSource)}`;
 
@@ -32,7 +32,7 @@ const SixPosts = async () => {
                 alt={post.title || "Something Went Wrong!"}
                 width={600}
                 placeholder="blur"
-                blurDataURL={base64Svg}
+        blurDataURL="/placeholder.svg"
                 quality={100}
                 height={400}
               />
