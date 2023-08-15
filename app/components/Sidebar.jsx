@@ -1,148 +1,89 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import styles from "@/app/styles/componets.module.css";
 import { IoMdSearch } from "react-icons/io";
 import Link from "next/link";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/firebase/config";
-import Swal from "sweetalert2";
-import "sweetalert2/dist/sweetalert2.min.css";
+import { checkEnvironment } from "./checkEnvironment";
 
-export default function Sidebar() {
-  const [categories, setCategories] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
+async function getData() {
+  "use server";
+  const res = await fetch(checkEnvironment().concat("/api/categories"), {
+    cache: "force-cache",
+  });
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
+
+async function searchData(searchText) {
+  "use server";
+  const res = await fetch(checkEnvironment().concat('/api/search'), {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ searchText }),
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+
+  return res.json();
+}
+
+export default async function Sidebar() {
+  const data = await getData();
   const [searchResults, setSearchResults] = useState([]);
+  const [searchText, setSearchText] = useState('');
 
-  useEffect(() => {
-    // Fetch all categories from the "BlogPosts" collection
-    const fetchCategories = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, "BlogPosts"));
-        const allCategories = new Set(); // Using a Set to ensure unique categories
-
-        // Loop through all documents and collect unique categories
-        querySnapshot.forEach((doc) => {
-          const category = doc.data().category;
-          if (category) {
-            allCategories.add(category);
-          }
-        });
-
-        setCategories(Array.from(allCategories));
-      } catch (error) {
-        console.error("Error fetching categories: ", error);
-        Swal.fire(
-          "Error",
-          "An error occurred while fetching categories.",
-          "error"
-        );
-      }
-    };
-
-    fetchCategories();
-  }, []);
-
-  useEffect(() => {
-    // Filter posts based on title, description, and categories
-    const filterPosts = () => {
-      if (!searchQuery) {
-        setSearchResults([]);
-        return;
-      }
-
-      const formattedQuery = searchQuery.toLowerCase();
-
-      // Fetch all posts from the "BlogPosts" collection
-      const fetchAllPosts = async () => {
-        try {
-          const querySnapshot = await getDocs(collection(db, "BlogPosts"));
-          const postsData = querySnapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-
-          // Filter the posts based on the search query
-          const filteredPosts = postsData.filter(
-            (post) =>
-              post.title.toLowerCase().includes(formattedQuery) ||
-              post.shortDescription.toLowerCase().includes(formattedQuery) ||
-              post.category.toLowerCase().includes(formattedQuery) ||
-              post.category
-                .toLowerCase()
-                .replace(/\s+/g, "-")
-                .includes(formattedQuery)
-          );
-
-          setSearchResults(filteredPosts);
-        } catch (error) {
-          console.error("Error fetching posts: ", error);
-          // Handle the error, e.g., show a message to the user
-        }
-      };
-
-      fetchAllPosts();
-    };
-
-    filterPosts();
-  }, [searchQuery]);
-
-  const formatCategory = (category) => {
-    // Replace spaces with "-"
-    // Replace "&" with "and"
-    return category.replace(/\s+/g, "-").replace(/&/g, "and");
+  const handleSearch = async () => {
+    try {
+      const data = await searchData(searchText);
+      setSearchResults(data.results);
+    } catch (error) {
+      console.error('Error fetching search results: ', error);
+    }
   };
 
   return (
     <>
       <div className={styles.Sidebar}>
         <div className={styles.sideTop}>
-          <div className={styles.searchbar}>
+        <div className={styles.searchbar}>
             <input
               type="search"
               placeholder="Search..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
             />
-            <span>
-              <IoMdSearch />{" "}
+            <span onClick={handleSearch}>
+              <IoMdSearch />
             </span>
           </div>
           <hr />
-          {searchQuery && (
-            <div className={styles.searchResults}>
-              {searchResults.length > 0 ? (
-                searchResults.map((result) => (
-                  <Link
-                    href={`/blogs/${result.id}`}
-                    key={result.id}
-                    style={{ whiteSpace: "normal" }}
-                  >
-                    <div className={styles.searchResult}>{result.title}</div>
-                  </Link>
-                ))
-              ) : (
-                <>
-                  <div className="loading-skeleton"></div>
-                </>
-              )}
-            </div>
-          )}
-          <div className={styles.categories}>
-            {categories.length > 0 ? (
-              <ul>
-                {categories.map((category) => (
-                  <li  key={category}>
-                    <Link href={`/categories/${formatCategory(category)}`}>{category}</Link>
-                  </li>
-                ))}
-              </ul>
+          <div className={styles.searchResults}>
+            {searchResults.length > 0 ? (
+              searchResults.map((result) => (
+                <Link key={result.id} href={`/blogs/${result.id}`} style={{ whiteSpace: 'normal' }}>
+                  <div className={styles.searchResult}>{result.title}</div>
+                </Link>
+              ))
             ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              <div className="loading-skeleton-link"></div>
-            <div className="loading-skeleton-link"></div>
-            <div className="loading-skeleton-link"></div>
-              </div>
+              <div className={styles.searchResult}>No results found.</div>
             )}
+          </div>
+          <hr />
+          <div className={styles.categories}>
+            <ul>
+              {data.categories.map((category) => (
+                <li key={category.id}>
+                  <Link href={`/category/${category.id}`}>{category.name}</Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
