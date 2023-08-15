@@ -5,7 +5,7 @@ import { BsDot } from "react-icons/bs";
 
 async function getData() {
   const res = await fetch(
-    "http://localhost:3000/api/latestposts",
+    "https://healthcarebiodiversity.vercel.app/api/latestposts",
     { cache: "force-cache" },
     { next: { revalidate: 3600 } }
   );
