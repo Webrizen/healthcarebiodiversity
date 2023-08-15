@@ -17,8 +17,12 @@ async function getData() {
   return res.json();
 }
 
+
+
 const LatestPost = async () => {
   const data = await getData();
+  const svgSource = `/blur.svg`;
+  const base64Svg = `data:image/svg+xml;base64,${btoa(svgSource)}`;
   return (
     <>
     <div className={styles.latestPost}>
@@ -28,7 +32,7 @@ const LatestPost = async () => {
         width={600}
         height={400}
         placeholder="blur"
-        blurDataURL="/placeholder.svg"
+        blurDataURL={base64Svg}
         quality={100}
       />
       <div className={styles.info}>
