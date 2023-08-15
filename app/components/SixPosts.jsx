@@ -4,24 +4,24 @@ import Image from "next/image";
 import { BsDot } from "react-icons/bs";
 import { checkEnvironment } from "./checkEnvironment";
 
-// async function getData() {
-//   const res = await fetch(checkEnvironment().concat("/api"), {
-//     cache: "force-cache",
-//   });
-//   if (!res.ok) {
-//     throw new Error("Failed to fetch data");
-//   }
+async function getData() {
+  const res = await fetch(checkEnvironment().concat("/api"), {
+    cache: "force-cache",
+  });
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
 
-//   return res.json();
-// }
+  return res.json();
+}
 
 const SixPosts = async () => {
-  // const data = await getData();
-  // const posts = data.posts.slice(-6);
+  const data = await getData();
+  const posts = data.posts.slice(-6);
 
   return (
     <div className={styles.SixPosts}>
-      {/* {posts && posts.length > 0 ? (
+      {posts && posts.length > 0 ? (
         posts.map((post) => (
           <div key={post.id} className={styles.card}>
             <div className={styles.image}>
@@ -47,8 +47,7 @@ const SixPosts = async () => {
         ))
       ) : (
         <p>No blog posts available.</p>
-      )} */}
-      just api things
+      )}
     </div>
   );
 };
