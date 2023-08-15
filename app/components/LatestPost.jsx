@@ -20,7 +20,8 @@ async function getData() {
 const LatestPost = async () => {
   const data = await getData();
   return (
-    <div className={styles.latestPost}>
+    <>
+    {/* <div className={styles.latestPost}>
       <Image
         src={data.latestPost.image || "/placeholder.svg"}
         alt={data.latestPost.title || "Please Check Your Internet Connection."}
@@ -38,7 +39,9 @@ const LatestPost = async () => {
         <h1>{data.latestPost.title || "Loading..."}</h1>
         <span>{data.latestPost.shortDescription || "Loading..."}</span>
       </div>
-    </div>
+    </div> */}
+    just api things
+    </>
   );
 };
 

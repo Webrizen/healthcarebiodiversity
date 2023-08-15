@@ -21,7 +21,7 @@ const SixPosts = async () => {
 
   return (
     <div className={styles.SixPosts}>
-      {posts && posts.length > 0 ? (
+      {/* {posts && posts.length > 0 ? (
         posts.map((post) => (
           <div key={post.id} className={styles.card}>
             <div className={styles.image}>
@@ -47,7 +47,8 @@ const SixPosts = async () => {
         ))
       ) : (
         <p>No blog posts available.</p>
-      )}
+      )} */}
+      just api things
     </div>
   );
 };

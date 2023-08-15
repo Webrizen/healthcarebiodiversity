@@ -18,7 +18,7 @@ const TrendingPosts = async () => {
 
   return (
     <div className={styles.vertposts}>
-      {trendingPosts && trendingPosts.length > 0 ? (
+      {/* {trendingPosts && trendingPosts.length > 0 ? (
         trendingPosts.map(post => (
           <>
           <div key={post.id} className={styles.TrendingPosts}>
@@ -35,7 +35,8 @@ const TrendingPosts = async () => {
         ))
       ) : (
         <p>No trending posts available.</p>
-      )}
+      )} */}
+      just api things
     </div>
   );
 };
