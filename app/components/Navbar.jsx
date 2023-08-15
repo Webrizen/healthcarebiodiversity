@@ -27,7 +27,7 @@ export default function Navbar() {
           </Link>
           {"  "}
           {"  "}
-          <Link href="/search">
+          <Link href="/search" aria-label="Search">
             <div className={styles.ico}>
               <BsSearch size={20} />
             </div>
