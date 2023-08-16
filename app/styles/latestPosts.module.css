@@ -42,10 +42,13 @@
         height: 400px;
     }
     .latestPost .info h1{
-        font-size: 25px;
+        font-size: 20px;
+    }
+    .latestPost .info p{
+        font-size: 12px;
     }
     .latestPost .info span{
-        font-size: 12px;
+        font-size: 15px;
     }
     .latestPost .info{
         bottom: 0;
